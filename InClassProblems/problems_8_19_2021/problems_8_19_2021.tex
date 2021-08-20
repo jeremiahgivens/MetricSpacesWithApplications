@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{8/19/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Problems from Class \Date}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\begin{theorem}
+Let $A_n = \left[ 0, \frac{1}{n}\right] = \{ x \in \mathbb{R} : 0 \leq x \leq \frac{1}{n} \}$. Then, 
+\begin{equation*}
+\bigcap_{n \in \mathbb{N}} A_n = \{0 \} \text{.}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+We have 
+\begin{align*}
+x \in \{0 \} &\implies x = 0 \\
+&\implies (\forall n \in \mathbb{N})(0 \leq x \leq \frac{1}{n})\\
+&\implies (\forall n \in \mathbb{N})(x \in A_n)\\
+&\implies x \in \bigcap_{n \in \mathbb{N}} A_n \text{.}
+\end{align*}
+Therefore, 
+\begin{equation*}
+\{ 0 \} \subseteq \bigcap_{n \in \mathbb{N}} A_n.
+\end{equation*}
+Suppose
+\begin{align*}
+x \in \bigcap_{n \in \mathbb{N}} A_n \text{,}
+\end{align*}
+and for the sake of contradiction that $x \not \in \{ 0 \}$.
+We can see
+\begin{align*}
+x \in \bigcap_{n \in \mathbb{N}} A_n \land x \not \in \{0 \} &\implies (\exists n \in \mathbb{N}) (x \in A_n \land x\not \in \{0 \})\\
+&\implies (\exists n \in \mathbb{N}) (x \in A_n \land x \neq 0)\\
+&\implies (\exists n \in \mathbb{N}) (0 < x \leq \frac{1}{n})\\
+&\implies (\exists m \in \mathbb{N})(\frac{1}{m} < x)\\
+&\implies (\exists m \in \mathbb{N})(x \not \in A_m)\\
+&\implies x \not \in \bigcap_{n \in \mathbb{N}} A_n \text{,}
+\end{align*}
+which is a contradiction. Therefore, $x \in \{0 \}$, and we can conclude that 
+\begin{equation*}
+\bigcap_{n \in \mathbb{N}} A_n = \{0 \} \text{.}
+\end{equation*}
+\end{proof}
+
+\begin{theorem}
+Let $f: X \to Y$. Then
+\begin{enumerate}
+\item hello mate
+\item yoooooo
+\end{enumerate}
+\end{theorem}
+\end{document}
