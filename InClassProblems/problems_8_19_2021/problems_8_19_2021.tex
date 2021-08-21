@@ -94,8 +94,80 @@ which is a contradiction. Therefore, $x \in \{0 \}$, and we can conclude that
 \begin{theorem}
 Let $f: X \to Y$. Then
 \begin{enumerate}
-\item hello mate
-\item yoooooo
+\item $f(A \cup B) = f(A) \cup f(B)$
+\item $A \subseteq B \implies f(A) \subseteq f(B)$
+\item $f^{-1}(C \cup D) = f^{-1}(C) \cup f^{-1}(D)$
+\item $f^{-1}(C \cap D) = f^{-1}(C) \cap f^{-1}(D)$
+\item $f(A \cap B) \subseteq f(A) \cap f(B)$
+\item $f^{-1}(\mathbb{C}A) = \mathbb{C} (f^{-1}(A))$
+\item $f(\mathbb{C}A) ??? \mathbb{C}(f(A))$ (this is an open question)
 \end{enumerate}
 \end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item Applying the definition of a set's image and the definition of unions of sets,  we see
+\begin{align*}
+y \in f(A \cup B) &\iff (\exists x \in A \cup B)(f(x) = y)\\
+&\iff (\exists x \in A)(f(x) = y) \lor (\exists x \in B)(f(x) = y)\\
+&\iff y \in f(A) \lor y \in f(B)\\
+&\iff y \in f(A) \cup f(B) \text{.}
+\end{align*}
+From this,  we can conclude that $f(A \cup B) = f(A) \cup f(B)$.
+
+\item Suppose $A \subseteq B$.  We have
+\begin{align*}
+y \in f(A) &\iff (\exists x \in A)(f(x) = y) && \\
+&\implies (\exists x \in B) (f(x) = y) && \text{By initial assumption}\\
+&\iff y \in f(B) \text{,}
+\end{align*}
+which means $f(A) \subseteq f(B)$.
+
+\item By definition of a set's preimage and the definition of a union of sets, we have
+\begin{align*}
+x \in f^{-1}(C \cup D) &\iff f(x) \in C \cup D \\
+&\iff f(x) \in C \lor f(x) \in D \\
+&\iff x \in f^{-1}(C) \lor x \in f^{-1}(D)\\
+&\iff x \in f^{-1}(C) \cup f^{-1}(D) \text{.}
+\end{align*}
+Therefore,  $f^{-1}(C \cup D) = f^{-1}(C) \cup f^{-1}(D)$.
+\item From the definition of a set's preimage and the definition of an intersection of two sets, 
+\begin{align*}
+x \in f^{-1}(C \cap D) &\iff f(x) \in C \cap D \\
+&\iff f(x) \in C \land f(x) \in D \\
+&\iff x \in f^{-1}(C) \land x \in f^{-1}(D)\\
+&\iff x \in f^{-1}(C) \cap f^{-1}(D) \text{.}
+\end{align*}
+Thus,  $f^{-1}(C \cap D) = f^{-1}(C) \cap f^{-1}(D)$.
+\item From the definition of a set's image and the definition of an intersection of sets,
+\begin{align*}
+y \in f(A \cap B) &\iff (\exists x \in A \cap B)(f(x) = y)\\
+&\iff (\exists x)(x \in A \land x \in B \land f(x) = y)\\
+&\implies (\exists x \in A)(f(x) = y) \land (\exists x \in B)(f(x) = y)\\
+&\iff y \in f(A) \land y \in f(B)\\
+&\iff y \in f(A) \cap f(B) \text{.}
+\end{align*}
+Thus,  $f(A \cap B) \subseteq f(A) \cap f(B)$.
+\item From the definitions of a set's preimage and the complement of a set, we have
+\begin{align*}
+x \in f^{-1}(\mathbb{C} A) &\iff f(x) \in \mathbb{C} A \\
+&\iff f(x) \in Y \land f(x) \not \in A\\
+&\iff x \in f^{-1}(Y) \land x \not \in f^{-1}(A)\\
+&\iff x \in \mathbb{C} f^{-1}(A) \text{.}
+\end{align*}
+Therefore,  $f^{-1}(\mathbb{C}A) = \mathbb{C} (f^{-1}(A))$.
+
+\item Expanding the sets by definition,  can see
+\begin{align*}
+y \in \mathbb{C} f(A) &\iff y \in f(X) \land y \not \in f(A) \\
+&\iff (\exists x \in X)(y = f(x) \land y \not \in f(A))\\
+&\iff (\exists x \in X)(f(x) \not \in f(A) \land f(x) = y)\\
+&\implies (\exists x \in X)(x \not \in A \land f(x) = y)\\
+&\iff (\exists x \in \mathbb{C}A)(f(x) = y)\\
+&\iff y \in f(\mathbb{C}A) \text{,}
+\end{align*}
+which leads us to conclude that $\mathbb{C} f(A) \subseteq f(\mathbb{C}A)$.
+\end{enumerate}
+Finally,  our proof is complete.
+\end{proof}
 \end{document}
