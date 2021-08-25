@@ -58,6 +58,17 @@ $f$ is injective if and only if $f(A \cap B) = f(A) \cap f(B)$,  for all $A,B \s
 \end{theorem}
 
 \begin{proof}
-proof here
+Let $A,B \subseteq X$.  We have already proven that for any function $f: X \to Y$,  $f(A \cap B) \subseteq f(A) \cap f(B)$.  Therefore,  we need to show $f$ is injective if and only if $f(A) \cap f(B) \subseteq f(A \cap B)$. 
+
+Suppose $f$ is injective.  Then
+\begin{align*}
+y \in f(A) \cap f(B) &\iff y \in f(A) \land y \in f(B) && \\
+&\iff (\exists x \in A)(f(x) = y) \land (\exists x \in B)(f(x) = y) &&\\
+&\iff (\exists x \in A \cap B)(f(x) = y) && \text{Injectivity of } f \\
+&\iff y \in f(A \cap B) \text{.}
+\end{align*}
+Thus,  $f(A) \cap f(B) \subseteq f(A \cap B)$. 
+
+We will now prove the contrapositive of the reverse direction.  Suppose $f$ is not injective. Then,  $(\exists x_1,  x_2 \in X)(f(x_1) = f(x_2) \land x_1 \not = x_2)$.  Define $A = \{x_1\}$ and $B = \{x_2\}$.  Clearly $A,B \subseteq X$,  and $A \cap B = \emptyset$.  By definition of  a sets image,  $f(A \cap B) = \emptyset$ However,  $f(A) \cap f(B) = \{f(x_1) \} \cap \{f(x_2)\} = \{f(x_1) \}$.  Therefore,  $f(A) \cap f(B) \not \subseteq f(A \cap B)$,  we have proven the contrapositive,  and our proof is complete.
 \end{proof}
 \end{document}
