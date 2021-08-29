@@ -1,0 +1,223 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{case}{Case}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{8/24/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Problems from Class \Date}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\section*{Problem 1}
+\begin{theorem}
+Let $f:X \to Y$ be a mapping.  Then
+\begin{equation*}
+f(f^{-1}(B)) \subseteq B \text{,  for every } B \subseteq Y \text{.}
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Let $B \subseteq X$.  By definition of a set's image and a set's preimage,  we have
+\begin{align*}
+y \in f(f^{-1}(B)) &\iff (\exists x \in f^{-1}(B))(y = f(x))\\
+&\iff (\exists x \in X)(y = f(x) \land f(x) \in B)\\
+&\implies y \in B \text{.}
+\end{align*}
+Therefore,  $f(f^{-1}(B)) \subseteq B \text{,  for every } B \subseteq	 Y$.
+\end{proof}
+
+\section*{Problem 2} We will start this problem by proving a lemma that we will need for the main theorem.
+
+\begin{lemma}
+Let $f:X \to Y$ be a mapping.  Then
+\begin{equation*}
+f(A \cap B) \subseteq f(A) \cap f(B) \text{,  for all } A,B \subseteq X \text{.}
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+Let $A,  B \subseteq X$.  By definition of a set's image and the intersection of two sets,  we have
+\begin{align*}
+y \in f(A \cap B) &\iff (\exists x \in A \cap B)(y = f(x))\\
+&\iff (\exists x \in A)(x \in B \land f(x) = y)\\
+&\implies (\exists x \in A)(f(x) = y) \land (\exists x \in B)(f(x) = y)\\
+&\iff y \in f(A) \land y \in f(B)\\
+&\iff y \in f(A) \cap f(B)\text{,}
+\end{align*}
+and our proof is complete.
+\end{proof}
+
+\begin{theorem}
+Let $f:X \to Y$ be a mapping.  Then 
+\begin{equation}
+f \text{is injective if and only if } f(A \cap B) = f(A) \cap f(B) \text{,  for all } A,B \subseteq X.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $A,B \subseteq X$.  We have already proven that for any function $f: X \to Y$,  $f(A \cap B) \subseteq f(A) \cap f(B)$.  Therefore,  we need to show $f$ is injective if and only if $f(A) \cap f(B) \subseteq f(A \cap B)$. 
+
+Suppose $f$ is injective.  Then
+\begin{align*}
+y \in f(A) \cap f(B) &\iff y \in f(A) \land y \in f(B) && \\
+&\iff (\exists x \in A)(f(x) = y) \land (\exists x \in B)(f(x) = y) &&\\
+&\iff (\exists x \in A \cap B)(f(x) = y) && \text{Injectivity of } f \\
+&\iff y \in f(A \cap B) \text{.}
+\end{align*}
+Thus,  $f(A) \cap f(B) \subseteq f(A \cap B)$. 
+
+We will now prove the contrapositive of the reverse direction.  That is,  we will prove that 
+\begin{equation} 
+\text{f is not injective } \implies  f(A) \cap f(B) \not \subseteq f(A \cap B).
+\end{equation}
+
+Suppose $f$ is not injective. Then,  $(\exists x_1,  x_2 \in X)(f(x_1) = f(x_2) \land x_1 \not = x_2)$.  Define $A = \{x_1\}$ and $B = \{x_2\}$.  We have $A,B \subseteq X$,  and $A \cap B = \emptyset$.  By definition of  a sets image,  $f(A \cap B)= f(\emptyset) = \emptyset$. However,  $f(A) \cap f(B) = \{f(x_1) \} \cap \{f(x_2)\} = \{f(x_1) \}$,  since $f(x_1) = f(x_2)$.  Therefore,  $f(A) \cap f(B) \not \subseteq f(A \cap B)$,  and our proof is complete.
+\end{proof}
+
+\section*{Problem 3}
+We will start this problem with some lemmas that we will use for the proof of the main theorem.
+
+\begin{lemma}
+Define $d: \mathbb{R} \to \mathbb{R}$ by $d(x,  y) = |x - y|$.  Then $d$ is a metric for $\mathbb{R}$.
+\end{lemma}
+
+\begin{proof}
+Let $x,  y \subseteq \mathbb{R}$.  By definition of absolute value,  we have $d(x, y) = x - y \iff x \geq y$,  and $d(x,  y) = y - x \iff y > x$.  By ordering of the reals,  we have $d(x,  y) \geq 0$.  Suppose $x = y$.  Then,  $d(x,  y) = x - y = x - x = 0$.  Now suppose $d(x, y) = 0$.  We can assume,  without loss of generality,  that $x \leq y$.  Then,  from the algebraic properties of $\mathbb{R}$,  
+\begin{align*}
+d(x,  y) &= 0\\
+|x - y| &= 0\\
+y - x &= 0\\
+y &= x \text{.}
+\end{align*}
+Therefore,  $d$ satisfies the first requirement of a metric.
+
+Assume,  without loss of generality,  that $x \leq y$.  Then $d(x,  y) = y - x$.  Now,  swap $x$ and $y$ in the above definition of absolute value to see (trivially) that $d(y,  x) = y - x$. Therefore,  $d(x, y) = d(y, x)$,  and $d$ fits the second criteria of a metric.
+
+Now let $x, y,z \in \mathbb{R}$.  Once more,  we can assume that $x \leq z$.  Then,  $d(x, z) = z - x$.  We have three cases to consider:
+
+\item[\bf{Case 1. } $y < x \leq z$.] Then,  
+\begin{align*}
+d(x,  y) + d(y,  z) &= (x - y) + (z - y)\\
+&> (x - y) + (z - y) + 2(y - x)&& \text{because }(y - x) < 0 \\
+&= z - x\\
+&= d(x,  z) \text{.}
+\end{align*}
+
+\item[\bf{Case 2.} $x \leq y \leq z$. ] In a similar fashion,
+\begin{align*}
+d(x,  y) + d(y,  z) &= (y - x) + (z - y)\\
+&= z - x \\
+&= d(x,  z) .
+\end{align*}
+
+\item[\bf{Case 3.} $x \leq z < y$. ] Once more,
+\begin{align*}
+d(x,  y) + d(y,  z) &= (y - x) + (y - z)\\
+&> (y - x) + (y - z) + 2(z - y) &&\text{because }(z - y) < 0\\
+&= z - x\\
+&= d(x,  z).
+\end{align*}
+
+In all of these cases,  $d(x,  z) \leq d(x,  y) + d(y,  z)$,  which means that $d$ fits the final criteria of a metric.
+\end{proof}
+
+\begin{theorem}
+Let $X = \{f:[a, b] \to \mathbb{R} | f \text{ is continuous}\}$.  Define
+\begin{equation*}
+d(f,  g) = \sup \{|f(t) - g(t)| : t \in [a, b] \}.
+\end{equation*}
+Then $d$ is a metric for $X$.
+\end{theorem}
+
+\begin{proof}
+To show that $d$ is a metric,  we will show that it fits the three requirements of a metric.  Let $f,  g \in X$.  By Lemma 2,  we have that $|f(t) - g(t)| \geq 0$ for all $t \in [a,  b]$.  Thus,  $d(f,  g) \geq 0$.  Now suppose that $f = g$.  By definition of equality of functions,  we have 
+\begin{equation*}
+(\forall t \in [a,  b])(f(t) = g(t)).
+\end{equation*}
+Thus,  by Lemma 2,  we have 
+\begin{align*}
+\{|f(t) - g(t)| : t \in [a, b] \} &= \{0 \}\\
+d(f,  g) &= \sup \{|f(t) - g(t)| : t \in [a, b] \}\\
+&= \sup \{0 \} \\
+&= 0.
+\end{align*}
+Now suppose that $\sup \{|f(t) - g(t)| : t \in [a, b] \} = 0$.  Then,  $(\forall t \in [a,  b])(|f(t) - g(t)| \leq 0)$.  By Lemma 2,  we have $(\forall t \in [a,  b])(|f(t) - g(t)| \geq 0)$.  Thus,  $f = g$, and we have shown that $d$ fits the first criteria of a metric.
+
+By Lemma 2,  we have 
+\begin{align*}
+d(f,  g) &= \sup \{|f(t) - g(t)| : t \in [a, b] \}\\
+&= \sup \{|g(t) - f(t)| : t \in [a, b] \}\\
+&= d(g,  f) \text{,}
+\end{align*}
+and $d$ fits the second criteria of a metric.
+\end{proof}
+
+Let $f,  g,  h \in X$.  By Lemma 2,  we have
+\begin{equation*}
+(\forall t \in [a,  b])(|f(t) - g(t)| \leq |f(t) - h(t)| + |g(t) - h(t)|) \text{,}
+\end{equation*}
+from which it follows that 
+\begin{align*}
+d(f,  g) &= \sup \{|f(t) - g(t)| : t \in [a, b] \}\\
+&\leq \sup \{|f(t) - h(t)| + |g(t) - h(t)|: t \in [a, b] \}.
+\end{align*}
+Define $s_1 := \sup \{|f(t) - h(t)| + |g(t) - h(t)|: t \in [a, b] \}$,  $s_2 := \sup \{|f(t) - h(t)| : t \in [a, b] \}$,  and $s_3 := \sup \{|g(t) - h(t)| : t \in [a, b] \}$.  By the Extreme Value Theorem,  there exist $t_1,  t_2,  t_3 \in [a,  b]$ such that $|f(t_1) - h(t_1)| + |g(t_1) - h(t_1)| = s_1$,  $|f(t_2) - h(t_2)| = s_2$,  and $|g(t_3) - h(t_3)| = s_3$.  Now suppose,  for sake of contradiction,  that $s_1 > s_2 + s_3$. Then,  
+\begin{align*}
+s_1 &> s_2 + s_3\\
+|f(t_1) - h(t_1)| + |g(t_1) - h(t_1)| &> |f(t_2) - h(t_2)| + |g(t_3) - h(t_3)| \\
+|f(t_1) - h(t_1)| + |g(t_3) - h(t_3)| &> |f(t_2) - h(t_2)| + |g(t_3) - h(t_3)| \\
+|f(t_1) - h(t_1)|  &> |f(t_2) - h(t_2)| \text{,}
+\end{align*}
+which contradicts our assumption that $|f(t) - h(t)|$ attains a maximum at $t_2$. Therefore $s_1 \leq s_2 + s_3$,  and $d$ fits the triangle equality
+\begin{align*}
+d(f,  g) &\leq d(h, g) + d(f, h).
+\end{align*}
+Finally,  we can conclude that $d$ is a metric for $X$.
+\end{document}
