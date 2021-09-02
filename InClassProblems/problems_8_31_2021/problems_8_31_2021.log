@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  31 AUG 2021 19:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  1 SEP 2021 18:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -330,6 +330,10 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+Overfull \hbox (3.03116pt too wide) detected at line 118
+[]
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
 Make it at least 15.15002pt.
@@ -339,29 +343,29 @@ This may cause the page layout to be inconsistent, however.
 [1{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-(./problems_8_31_2021.aux) ) 
+[2] (./problems_8_31_2021.aux) ) 
 Here is how much of TeX's memory you used:
  4264 strings out of 480608
  59730 string characters out of 5903631
- 324954 words of memory out of 5000000
+ 326954 words of memory out of 5000000
  20103 multiletter control sequences out of 15000+600000
  538936 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,10n,45p,521b,258s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2020/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmti12.pfb>
-Output written on problems_8_31_2021.pdf (1 page, 93805 bytes).
+ 37i,11n,45p,521b,292s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2020/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmti12.pfb>
+Output written on problems_8_31_2021.pdf (2 pages, 94533 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 47 PDF objects out of 1000 (max. 8388607)
+ 33 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -108,6 +108,15 @@ Now suppose for some $p \in X$,  there exists $U_1(p), U_2(p) \in \Tau$ such tha
 &= \bar{A} \cup \bar{B} \text{,}
 \end{align*}
 as desired.
+\item In a similar manner
+\begin{align*}
+p \in \overline{A \cap B} &\iff p \in (A \cap B) \land  (\forall U(p))(U(p) \cap [(A \cap B)\backslash \{ p\}] \not = \emptyset \}\\
+&\implies p \in (A \cap B) \land  (\forall U(p))(U(p) \cap (A \backslash \{ p\}) \not = \emptyset \land U(p) \cap (B \backslash \{ p\}) \not = \emptyset \}\\
+&\iff p \in (A \cap B) \cup (A' \cap B')\\
+&\iff p \in (A \cup A') \cap (B \cup B')\\
+&\iff p \in \bar{A} \cap \bar{B} \text{,}
+\end{align*}
+which means that $\overline{A \cap B} \subseteq \bar{A} \cap \bar{B}$.
 \end{enumerate}
 \end{proof}
 \end{document}
