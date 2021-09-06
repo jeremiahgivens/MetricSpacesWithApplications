@@ -1,0 +1,125 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Homework 2}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\section*{Problem 4.}
+\begin{theorem}
+Let $(X,  \Tau)$ be a topological space and let $B \subseteq X$. Then
+\begin{equation*}
+\bar{B} = \mathbb{C}[\interior(\mathbb{C}B)].
+\end{equation*}
+\end{theorem}
+\begin{proof}
+We have 
+\begin{align*}
+p \in \bar{B} &\iff (\forall U(p) \in \Tau)(U(p) \cap B \not = \emptyset) && \text{We proved this in class.}\\
+&\iff (\forall U \in \Tau)(p \in U \implies U \cap B \not = \emptyset)&& \text{Definition of neighborhood}\\
+&\iff (\forall U \in \Tau)(U \cap B = \emptyset \implies p \not \in U) && \text{Contrapositive}\\
+&\iff (\forall U \in \Tau)(U \cap B = \emptyset \implies p \in \mathbb{C}U)\\
+&\iff (\forall U \in \Tau)(U \subseteq \mathbb{C}B \implies p \in \mathbb{C}U)&& U \cap B = \emptyset \iff U \subseteq \mathbb{C}B \\
+&\iff (\forall U \in \Tau)(p \in U \implies U \not \subseteq \mathbb{C} B)&& \text{Contrapositive}\\
+&\iff p \not \in \interior(\mathbb{C}B) && \text{By definition of interior}\\
+&\iff p \in \mathbb{C}[\interior(\mathbb{C}B)] \text{,}
+\end{align*}
+and we can conclude that $\bar{B} = \mathbb{C}[\interior(\mathbb{C}B)]$.
+\end{proof}
+
+\section*{Problem 5.}
+\begin{theorem}
+Let $(X,  \Tau)$ be a topological space and let $A \subseteq X$. Then
+\begin{equation*}
+\partial A = \bar{A} \backslash \interior(A)
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Proceeding as usual,
+\begin{align*}
+p \in \partial A &\iff p \in \bar{A} \cap \overline{\mathbb{C}A}\\
+&\iff p \in \bar{A} \cap \mathbb{C}[\interior(\mathbb{C}(\mathbb{C}A))] &&\text{Directly applying Theorem 1 from Problem 4}\\
+&\iff p \in \bar{A} \cap \mathbb{C}[\interior(A)] && \text{Basic property of complements}\\
+&\iff p \in \bar{A} \backslash \interior(A)\text{,} && \text{Definition of set difference}
+\end{align*}
+and we have shown $\partial A = \bar{A} \backslash \interior(A)$.
+\end{proof}
+
+\section*{Problem 6.}
+\begin{theorem}
+Let $(X,  \Tau)$ be a topological space and let $A \subseteq X$. Then $\interior(A)$ is open.
+\end{theorem}
+
+\begin{proof}
+By definition of a set's interior, we have $(\forall p \in \interior(A))(\exists U(p) \in \Tau)(U(p) \subseteq A)$.  From this we can define the set 
+\begin{align*}
+\{U(p) \in \Tau | U(p) \subseteq A \text{ for some } p \in \interior(A)\}.
+\end{align*} 
+We propose that 
+\begin{align*}
+\interior(A) = \bigcup \{U(p) \in \Tau | U(p) \subseteq A \text{ for some } p \in \interior(A) \} \text{.}
+\end{align*}
+We have 
+\begin{align*}
+p \in \interior(A) &\iff (\exists U(p) \in \Tau)(U(p) \subseteq A)\\
+&\iff p \in \bigcup \{U(p) \in \Tau | U(p) \subseteq A \text{ for some } p \in \interior(A) \} \text{.}
+\end{align*}
+Since any union of sets in $\Tau$ is also in $\Tau$, it follows that $\interior(A)$ is open.
+\end{proof}
+\end{document}
