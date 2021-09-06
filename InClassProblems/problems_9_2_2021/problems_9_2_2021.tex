@@ -1,0 +1,166 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large In Class Exercises 8/31/2021}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\begin{theorem}
+Let $(X, \Tau)$ be a topological space, and let $A,B \subseteq X$. Then 
+\begin{enumerate}
+\item $A \subseteq B \implies \mathring{A} \subseteq \mathring{B}$
+\item $\mathring{A} \cap \mathring{B} \subseteq \interior(A \cup B)$
+\item $\interior(A \cap B) \subseteq \mathring{A} \cap \mathring{B}$
+\item $\mathring{A} = \bigcup \{U : U \in \Tau \land U \subseteq A \}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item Suppose $A \subseteq B$.  Then
+\begin{align*}
+p \in \mathring{A} &\iff (\exists U(p) \in \Tau)(U(p) \subseteq A)\\
+&\implies(\exists U(p) \in \Tau)(U(p) \subseteq B) && \text{Since } A \subseteq B\\
+&\iff p \in \mathring{B} \text{,}
+\end{align*}
+as desired.
+\item We have 
+\begin{align*}
+p \in \mathring{A} \cap \mathring{B} &\iff p \in \mathring{A} \land p \in \mathring{B}\\
+&\iff (\exists U_1(p) \in \Tau)(U_1(p) \subseteq A) \land (\exists U_2(p) \in \Tau)(U_2(p) \subseteq B)\\
+&\implies (\exists U(p) \in \Tau)(U(p) \subseteq A \cup B) \text{,  e.g., } U(p) = U_1(p)\\
+&\iff p \in \interior(A \cup B) \text{.}
+\end{align*}
+\item In a similar manner
+\begin{align*}
+p \in \interior(A \cap B) &\iff (\exists U(p) \in \Tau)(U(p) \subseteq A \cap B)\\
+&\iff (\exists U(p) \in \Tau)(U(p) \subseteq A \land U(p) \subseteq B)\\
+&\iff (\exists U(p) \in \Tau)(U(p) \subseteq A) \land (\exists U(p) \in \Tau)(U(p) \subseteq A)\\
+&\iff p \in \mathring{A} \land p \in \mathring{B}\\
+&\iff p \in \mathring{A} \cap \mathring{B}.\\
+\end{align*}
+\item This follows directly from the definition of a sets interior. 
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+Let $(X, \Tau)$ be a topological space,  let $A,Y \subseteq X$, and let $p \in X$. Then 
+\begin{equation}
+(\exists U(p) \in \Tau_Y) \implies (p \in Y).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We have, by definition of a relative topology, that $(\exists V \in \Tau)(U(p) = V \cap Y)$.  By definition of a sets intersection, we must have $p \in Y$.
+\end{proof}
+\begin{theorem}
+Let $(X, \Tau)$ be a topological space, and let $Y \subseteq X$. Then 
+\begin{enumerate}
+\item $A \subseteq X \implies (\bar{A_Y} = \bar{A} \cap Y) \land (A'_Y = A' \cap Y)$
+\item $\interior(A) \cap Y \subseteq \interior_Y (A)$
+\item $\partial_Y A \subseteq \partial A \cap Y.$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item Suppose $A \subseteq X$. We have 
+\begin{align*}
+p \in \bar{A_Y} &\iff (\forall U(p) \in \Tau_Y)(U(p) \cap A \not = \emptyset)\\
+&\iff (\forall V(p) \in \Tau)(V(p) \cap Y \cap A \not = \emptyset) \land p \in Y\text{, the first because } V(p) \cap Y \in \Tau_Y \text{ is a} \\
+&\text{ neighborhood of } p \text{, and } p \in Y \text{ by Lemma 1}\\
+&\iff (\forall V(p) \in \Tau)(V(p) \cap A \not = \emptyset) \land p \in Y\\
+&\iff p \in \bar{A} \land p \in Y\\
+&\iff p \in \bar{A} \cap Y.
+\end{align*}
+Thus,  $\bar{A_Y} = \bar{A} \cap Y$.  We also have
+\begin{align*}
+p \in A_Y' &\iff (\forall U(p) \in \Tau_Y)(U(p) \cap (A \backslash \{p\}) \not = \emptyset)\\
+&\iff (\forall V(p) \in \Tau)(V(p) \cap Y \cap (A \backslash \{p\}) \not = \emptyset) \land p \in Y\text{, the first because } V(p) \cap Y \in \Tau_Y \text{ is a} \\
+&\text{ neighborhood of } p \text{, and } p \in Y \text{ by Lemma 1}\\
+&\iff (\forall V(p) \in \Tau)(V(p) \cap (A \backslash \{p\}) \not = \emptyset) \land p \in Y\\
+&\iff p \in A' \land p \in Y\\
+&\iff p \in A' \cap Y.
+\end{align*}
+Therefore, we have proven (1.).
+\item We have 
+\begin{align*}
+p \in \interior(A) \cap Y &\iff (\exists U(p) \in \Tau)(U(p) \subseteq A) \land p \in Y\\
+&\implies (\exists V(p) \in \Tau_Y)(V(p) \subseteq A), \text{ e.g., } V(p) = U(p) \cap Y\\
+&\iff p \in \interior_Y(A) \text{,}
+\end{align*}
+which allows us to conclude that $\interior(A) \cap Y \subseteq \interior_Y (A)$.
+\item Following as before
+\begin{align*}
+p \in \partial_Y A &\iff p \in \bar{A}_Y \cap \overline{\mathbb{C}A}_Y\\
+&\iff (\forall U_1(p) \in \Tau_Y)(U_1(p) \cap A \not = \emptyset) \land (\forall U_2(p) \in \Tau_Y)(U_2(p) \cap \mathbb{C}A \not = \emptyset)\\
+&\iff (\forall V_1(p) \in \Tau)(V_1(p) \cap A \not = \emptyset) \land (\forall V_2(p) \in \Tau)(V_2(p) \cap \mathbb{C}A \not = \emptyset) \land p \in Y, \text{ By}\\
+&\text{ the same argument as in part (1.)}\\
+&\iff p \in \bar{A} \land p \in \bar{\mathbb{C}A} \land p \in Y\\
+&\iff p \in \partial A \cap Y
+\end{align*}
+and we have proven an even stronger condition of part (3.), 
+\begin{align*}
+\partial_Y A = \partial A \cap Y.
+\end{align*}
+\end{enumerate}
+Finally,  we have completed the proof.
+\end{proof}
+
+DO NOT FORGET TO BRING UP 1.3 AND 2.3 IN CLASS
+\end{document}
