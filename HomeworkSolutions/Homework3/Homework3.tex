@@ -73,21 +73,87 @@ Let $(X, \Tau)$, $(Y, \mathcal{S})$ be topological spaces, and let $f : X \to Y$
 \end{equation*}
 \end{definition}
 
-\section*{Problem 1}
+\section*{Problem 7}
+\begin{lemma}
+Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$, and let $B \subseteq Y$. Then
+\begin{equation*}
+f(f^{-1}(B)) \subseteq B.
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+p \in f(f^{-1}(B)) &\iff (\exists x \in f^{-1}(B))(f(x) = p) &&\text{Definition of a set's image}\\
+&\iff (\exists x \in X)(f(x) = p \land f(x) \in B)&&\text{Definition of a set's preimage}\\
+&\implies p \in B,
+\end{align*}
+which proves that $f(f^{-1}(B)) \subseteq B$.
+\end{proof}
+
+\begin{lemma}
+Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$, and let $A \subseteq X$. Then
+\begin{equation*}
+A \subseteq f^{-1}(f(A))
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+p \in A &\implies (\exists x \in A)(f(p) = f(x)) &&\text{Just let } x = p\\
+&\iff f(p) \in f(A)&&\text{Definition of a set's image}\\
+&\iff p \in f^{-1}(f(A)),&&\text{Definition of a set's preimage}
+\end{align*}
+which proves that $A \subseteq f^{-1}(f(A))$.
+\end{proof}
+
 \begin{theorem}[Global Continuity Facts]
 Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$. Then the following are equivalent:
 \begin{enumerate}
 \item $f$ is continuous.
 \item $f^{-1}(F)$ is closed in $X$ for all $F$ closed in $Y$.
 \item $f^{-1}(U)$ is open in $X$ for all $U$ members of a subbasis of $\Tau_Y$.
-\item $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \in X$.
+\item $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \subseteq X$.
 \item $\overline{f^{-1}(B)} \subseteq f^{-1}(\bar{B})$ for all $B \subseteq Y$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}$((4) \implies (5))$.  Suppose $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \in X$, and let $B \subseteq Y$. We have
 \begin{align*}
-p \in \overline{f^{-1}(B)} &\iff (\forall U(p) \in \Tau_X)(U(p) \cap f^{-1}(B) \not = \emptyset)
+p \in \overline{f^{-1}(B)} &\iff p \in f^{-1}(f(\overline{f^{-1}(B)})) && \text{By Lemma 2}\\
+&\iff p \in f^{-1}(\overline{f(f^{-1}(B))}) && \text{By initial assumption}\\
+&\iff p \in f^{-1}(\bar{B}), &&\text{By Lemma 1}
 \end{align*}
+and we have proven $\overline{f^{-1}(B)} \subseteq f^{-1}(\bar{B})$. Since $B$ was arbitrary, we have proven $(4) \implies (5)$.
+\end{proof}
+
+\section*{Problem 8}
+\begin{theorem}
+Let $(X, d)$ and $(Y, \rho)$ be metric spaces, and let $f : X \to Y$. Then the following are equivalent:
+\begin{enumerate}
+\item $f$ is continuous at $x_0 \in X$.
+\item $(\forall \{x_k\})(x_k \to x_0 \implies f(x_k) \to f(x_0))$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$((2) \implies (1))$. We will prove the contrapositive. We have 
+\begin{align*}
+f \text{ is not continuous at } x_0 \in X &\iff \neg(\forall \epsilon > 0)(\exists \delta >0)(f(B(x_0;\delta)) \subseteq B(f(x_0); \epsilon))\\
+&\iff (\exists \epsilon > 0)(\forall \delta >0)(f(B(x_0;\delta)) \not \subseteq B(f(x_0); \epsilon))\\
+&\iff (\exists \epsilon > 0)(\forall \delta >0)(\exists x \in B(x_0;\delta))(f(x) \not \in B(f(x_0); \epsilon))\\
+&\iff (\exists \epsilon > 0)(\forall \delta >0)(\exists x \in B(x_0;\delta))(\rho(f(x), f(x_0)) \geq \epsilon ).
+\end{align*}
+Fix this $\epsilon$, and define $\delta_n = 1/n$ for $n \in \mathbb{N}$. Using the Axiom of Choice, we can define a sequence $\{x_k\}_{k=1}^\infty$ where $x_k \in B(x_0; \delta_k)$, and $\rho(f(x_k), f(x_0)) \geq \epsilon$. Thus, we have created a sequence $\{x_k\}_{k=1}^\infty$ that converges to $x_0$, and we have a sequence $\{f(x_k)\}_{k=1}^\infty$ which does not converge to $x_0$. Therefore, we have proven the contrapositive.
+\end{proof}
+
+\section*{Problem 9}
+\begin{theorem}
+Let $(\mathbb{R}, d)$ be a metric space, and let $A \subseteq \mathbb{R}$ be a bounded. Then $\sup A \in \bar{A}$.
+\end{theorem}
+
+\begin{proof}
+Since $A$ is bounded, the least upper bound property of the real numbers leads us to conclude that $\sup A$ exists. Let $s = \sup A$. Suppose, for sake of contradiction,  that $\sup A \not \in \bar{A}$.  Then, $(\exists U(s) \in \Tau)(U(s) \cap A = \emptyset)$. Since this $U(s)$ is open, we can find a $\delta > 0$ such that $B(s; \delta) \subseteq U(s)$.  This implies that there is no element in $A$ between $s$ and $s - \delta$, which means that $s - \delta$ is an upper bound of $A$. Since $s - \delta$ is an upper bound of $A$, and $s - \delta < s$, $s$ cannot be the supremum of $A$, and we have reached a contradiction. Thus, $\sup A \in \bar{A}$
 \end{proof}
 \end{document}
