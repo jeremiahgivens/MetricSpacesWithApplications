@@ -121,9 +121,9 @@ Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$. Then the following are e
 
 \begin{proof}$((4) \implies (5))$.  Suppose $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \in X$, and let $B \subseteq Y$. We have
 \begin{align*}
-p \in \overline{f^{-1}(B)} &\iff p \in f^{-1}(f(\overline{f^{-1}(B)})) && \text{By Lemma 2}\\
-&\iff p \in f^{-1}(\overline{f(f^{-1}(B))}) && \text{By initial assumption}\\
-&\iff p \in f^{-1}(\bar{B}), &&\text{By Lemma 1}
+p \in \overline{f^{-1}(B)} &\implies p \in f^{-1}(f(\overline{f^{-1}(B)})) && \text{By Lemma 2}\\
+&\implies p \in f^{-1}(\overline{f(f^{-1}(B))}) && \text{By initial assumption}\\
+&\implies p \in f^{-1}(\bar{B}), &&\text{By Lemma 1}
 \end{align*}
 and we have proven $\overline{f^{-1}(B)} \subseteq f^{-1}(\bar{B})$. Since $B$ was arbitrary, we have proven $(4) \implies (5)$.
 \end{proof}

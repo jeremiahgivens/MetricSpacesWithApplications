@@ -1,0 +1,255 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=.75in,right=.75in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Homework 3}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\begin{definition}
+Let $(X, \Tau)$, $(Y, \mathcal{S})$ be topological spaces, and let $f : X \to Y$. We say that $f$ is continuous if and only if 
+\begin{equation*}
+(\forall G \in \mathcal{S})(f^{-1}(G) \in \Tau).
+\end{equation*}
+\end{definition}
+
+\begin{definition}[Local Continuity] $f$ is said to be continuous at $x_0 \in X$ if and only if 
+\begin{equation*}
+(\forall W(f(x_0))(\exists U(x_0))(f(U(x_0)) \subseteq W(f(x_0)).
+\end{equation*}
+\end{definition}
+
+\begin{lemma}
+Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$, and let $B \subseteq Y$. Then
+\begin{equation*}
+f(f^{-1}(B)) \subseteq B.
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+p \in f(f^{-1}(B)) &\iff (\exists x \in f^{-1}(B))(f(x) = p) &&\text{Definition of a set's image}\\
+&\iff (\exists x \in X)(f(x) = p \land f(x) \in B)&&\text{Definition of a set's preimage}\\
+&\implies p \in B,
+\end{align*}
+which proves that $f(f^{-1}(B)) \subseteq B$.
+\end{proof}
+
+\begin{lemma}
+Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$, and let $A \subseteq X$. Then
+\begin{equation*}
+A \subseteq f^{-1}(f(A))
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+p \in A &\implies (\exists x \in A)(f(p) = f(x)) &&\text{Just let } x = p\\
+&\iff f(p) \in f(A)&&\text{Definition of a set's image}\\
+&\iff p \in f^{-1}(f(A)),&&\text{Definition of a set's preimage}
+\end{align*}
+which proves that $A \subseteq f^{-1}(f(A))$.
+\end{proof}
+
+\begin{lemma}
+Let $f:X \to Y$, and let $A \in Y$. Then
+\begin{equation*}
+\mathbb{C}f^{-1}(A) = f^{-1}(\mathbb{C}A).
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+We have 
+\begin{align*}
+p \in \mathbb{C}f^{-1}(A) &\iff p \not \in f^{-1}(A)\\
+&\iff f(p) \not \in A\\
+&\iff f(p) \in \mathbb{C}A\\
+&\iff p \in f^{-1}(\mathbb{C}A),
+\end{align*}
+and we have proven $\mathbb{C}f^{-1}(A) = f^{-1}(\mathbb{C}A)$.
+\end{proof}
+
+\begin{lemma}
+Let $f:X \to Y$, and let $A,B \subseteq Y$. Then,
+\begin{align*}
+A \cap B \not = \emptyset \implies f^{-1}(A) \cap f^{-1}(B) \not = \emptyset.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+f^{-1}(A) \cap f^{-1}(B) \not = \emptyset &\iff (\exists p \in X)(p \in f^{-1}(A) \land p\in f^{-1}(B))\\
+&\iff (\exists p \in X)(f(p) \in A \cap f(p) \in B)\\
+&\iff A \cap B \not = \emptyset.
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+Let $f:X \to Y$, and let $A,B \subseteq X$. Then,
+\begin{align*}
+A \cap B \not = \emptyset \implies f(A) \cap f(B) \not = \emptyset.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+f(A) \cap (B) \not = \emptyset &\iff (\exists p \in Y)(p \in f(A) \land p\in f(B))\\
+&\implies (\exists p \in Y)(p \in f(A) \cap f(B))\\
+&\implies (\exists x \in X)(f(x) \in A \cap B)\\
+&\implies A \cap B \not = \emptyset.
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+Let $(X, \Tau)$ be a metric space, and let $A \subseteq X$. Then
+\begin{align*}
+A \in \Tau \iff A \cap \overline{\mathbb{C}A} = \emptyset.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+A \not \in \Tau &\iff (\exists x \in A)(\forall U(x) \in \Tau)(U(x) \not \subseteq A)\\
+&\iff (\exists x \in A)(\forall U(x) \in \Tau)(\exists q \in U(x))(q \not \in A)\\
+&\iff (\exists x \in A)(\forall U(x) \in \Tau)(\exists q \in U(x))(q \in \mathbb{C}A)\\
+&\iff (\exists x \in A)(\forall U(x) \in \Tau)(U(x) \cap \mathbb{C}A \not = \emptyset)\\
+&\iff (\exists x \in A)(x \in \overline{\mathbb{C}A})\\
+&\iff A \cap \overline{\mathbb{C} A} \not = \emptyset.
+\end{align*}
+\end{proof}
+
+\begin{theorem}[Global Continuity Facts]
+Let $X$ and $Y$ be topological spaces. Let $f:X \to Y$. Then the following are equivalent:
+\begin{enumerate}
+\item $f$ is continuous.
+\item $f^{-1}(F)$ is closed in $X$ for all $F$ closed in $Y$.
+\item $f^{-1}(U)$ is open in $X$ for all $U$ members of a subbasis of $\Tau_Y$.
+\item $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \subseteq X$.
+\item $\overline{f^{-1}(B)} \subseteq f^{-1}(\bar{B})$ for all $B \subseteq Y$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$((1) \implies (2))$.  Suppose $f$ is continuous.  Let $F$ be closed in $Y$. We have, by definition, that $\mathbb{C}F$ is open in $Y$. By continuity of $f$ we have $f^{-1}(\mathbb{C}F) \in \Tau_X$. By 
+\begin{align*}
+F \text{ is closed in } Y &\iff \mathbb{C}F \text{ is open } Y &&\text{By definition of a closed set}\\
+&\implies f^{-1}(\mathbb{C}F) \in \Tau_X &&\text{Since } f \text{ is continuous}\\
+&\iff \mathbb{C}f^{-1}(F) \in \Tau_X && \text{By Lemma 3}\\
+&\iff f^{-1}(F) \text{ is closed in } X && \text{By definition of a closed set},
+\end{align*}
+and we have proven $((1) \implies (2))$. 
+
+$((2) \implies (3))$.  Suppose that $f^{-1}(F)$ is closed in $X$ for all $F$ closed in $Y$. Let $\{U_\alpha \in Y\}$ be a subbasis of $\Tau_Y$.  We have that the union of any finite intersections of this set are open, we can conclude that any member $U$ of this subbasis is open in $Y$. With this, we have
+\begin{align*}
+U \in \Tau_Y &\iff \mathbb{C} U \text{ is closed in } Y\\
+&\implies f^{-1}(\mathbb{C} U) \text{ is closed in } X\\
+&\iff \mathbb{C} f^{-1}(U) \text{ is closed in } X\\
+&\iff f^{-1}(U) \in \Tau_X \text{,}
+\end{align*}
+and we have proven $((2) \implies (3))$.
+
+$((3) \implies (4))$.  Suppose $f^{-1}(U)$ is open in $X$ for all $U$ members of a subbasis of $\Tau_Y$. Let $A \subseteq X$.  We want to show that $f(\bar{A}) \subseteq \overline{f(A)}$.  Let $p \in \bar{A} \iff (\exists x \in \bar{A})(f(x) = p)$.  We have
+\begin{align*}
+x \in \bar{A} &\implies f(x) \in f(\bar{A}).
+\end{align*}
+If we let $V(f(x)) \in \Tau_Y$ be a neighborhood of $f(x)$, then we can easily define a subbasis of $\Tau_Y$ of which $V$ is a member. By initial assumption,  $f^{-1}(V) \in \Tau_X$, and we have by definition that $f^{-1}(V)$ is a neighborhood of $f(x)$. Then, 
+\begin{align*}
+x \in \bar{A} &\implies f^{-1}(V) \cap A \not = \emptyset\\
+&\iff f(f^{-1}(V)) \cap f(A) \not = \emptyset &&\text{By Lemma 5}\\
+&\implies V \cap f(A) \not = \emptyset &&\text{By Lemma 1}\\
+&\implies f(x) \in \overline{f(A)}\\
+&\implies p \in \overline{f(A)},
+\end{align*}
+and we have shown that $f(\bar{A}) \subseteq \overline{f(A)}$. Thus, $((3) \implies (4))$. 
+
+$((4) \implies (5))$.  Suppose $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \in X$, and let $B \subseteq Y$. We have
+\begin{align*}
+p \in \overline{f^{-1}(B)} &\implies p \in f^{-1}(f(\overline{f^{-1}(B)})) && \text{By Lemma 2}\\
+&\implies p \in f^{-1}(\overline{f(f^{-1}(B))}) && \text{By initial assumption}\\
+&\implies p \in f^{-1}(\bar{B}), &&\text{By Lemma 1}
+\end{align*}
+and we have proven $\overline{f^{-1}(B)} \subseteq f^{-1}(\bar{B})$. Since $B$ was arbitrary, we have proven $(4) \implies (5)$.
+
+$((5) \implies (4))$.  Suppose $\overline{f^{-1}(B)} \subseteq f^{-1}(\bar{B})$ for all $B \subseteq Y$. We want to show that $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \in X$.  Let $A \subseteq X$. We have
+\begin{align*}
+p \in f(\bar{A}) &\implies p \in f(\overline{f^{-1}(f(A))}) &&\text{By Lemma 2}\\
+&\implies p \in f(f^{-1}(\overline{f(A)})) && \text{By initial assumption}\\
+&\implies p \in \overline{f(A)}, &&\text{By Lemma 1}
+\end{align*}
+and we have shown that $f(\bar{A}) \subseteq \overline{f(A)}$.
+
+$((4) \implies (1))$.  Suppose $f(\bar{A}) \subseteq \overline{f(A)}$ for all $A \in X$. We want to show that $(\forall G \in \Tau_Y)(f^{-1}(G) \in \Tau_X)$. Let $G \in \Tau_Y$.  We have
+\begin{align*}
+p \in \overline{\mathbb{C}f^{-1}(G)} &\implies  f(p) \in f(\overline{\mathbb{C}f^{-1}(G)})\\
+&\implies f(p) \in \overline{f(\mathbb{C}f^{-1}(G)}) &&\text{By initial assumption}\\
+&\implies f(p) \in \overline{f(f^{-1}(\mathbb{C}G)})&&\text{By Lemma 3}\\
+&\implies f(p) \in \overline{\mathbb{C}G}&&\text{By Lemma 1}\\
+&\implies f(p) \in \mathbb{C}G&&\text{Since } \mathbb{C}G \text{ is closed}\\
+&\implies f(p) \not \in G\\
+&\iff p \not \in f^{-1}(G),
+\end{align*}
+which leads us to conclude that $f^{-1}(G) \cap \overline{\mathbb{C}f^{-1}(G)} = \emptyset$. By Lemma 6, $f^{-1}(G) \in \Tau_X$, and we have that $f$ is continuous.
+
+Finally, the proof is complete.
+\end{proof}
+
+\end{document}
