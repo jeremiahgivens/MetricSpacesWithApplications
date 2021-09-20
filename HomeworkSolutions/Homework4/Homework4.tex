@@ -1,0 +1,211 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=.75in,right=.75in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Homework 4}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\section*{Problem 10}
+\begin{theorem}
+Let $X$ be an arbitrary topological space. Suppose for each $x \in X$, 
+\begin{align*}
+\bigcap \{\overline{U_x}| U_x \text{ is a nbh of } x \} = \{x\}.
+\end{align*}
+Then, $\Delta = \{(x,x): x \in X \}$ is closed in $X \times X$.
+\end{theorem}
+
+\begin{proof}
+Let $x \in X$. Since the closure of any set is closed,  Proposition 1.1 tells us that $\{x\}$ is closed in $X$, because $\{x\}$ is written as an intersection of closed sets. We have
+\begin{align*}
+\{x \} \text{ is closed} &\iff \mathbb{C}\{x \} \text{ is open}\\
+&\implies \mathbb{C}\{x \} \times \mathbb{C}\{x \} \text{ is open in } X \times X\\
+&\iff \{(y, z): y,z \in \mathbb{C}\{x\} \} \text{ is open in } X \times X\\
+&\iff \{(y, z): y,z \in X \land y \not = x \land z \not = x\} \text{ is open in } X \times X\\
+&\iff \mathbb{C} \{(y, z): y,z \in X \land y \not = x \land z \not = x\} \text{ is closed in } X \times X\\
+&\iff \{(y, z): y,z \in X \land y = z = x\} \text{ is closed in } X \times X\\
+&\iff \{(x, x)\} \text{ is closed in } X \times X.
+\end{align*}
+Thus, $\{(x, x)\}$ is closed in $X \times X$ for all $x \in X$. Then, again invoking Proposition 1.1, we have that
+\begin{align*}
+\Delta = \bigcap_{x \in X} \{(x, x) \} \text{ is closed in } X \times X,
+\end{align*}
+and our proof is complete.
+\end{proof}
+
+\section*{Problem 11}
+\begin{theorem}
+Let $X, Y$ be metric spaces with metrics $d_X$ and $d_Y$ respectively, and let $f,g:X \to Y$ be continuous functions. Let $h:X \to Y\times Y$ be a function defined by $h(x) = (f(x), g(x))$. Then, $h$ is continuous.
+\end{theorem}
+
+\begin{proof}
+We first remark that $Y \times Y$ forms a metric space with metric $d: Y \times Y \to \mathbb{R}$ defined by 
+$$d((x_1, y_1), (x_2, y_2)) = d_Y(x_1, x_2) + d_Y(y_1, y_2).$$
+Let $x \in X$, let $\epsilon >0$, and let $\{x_k\}_{k = 1}^\infty$ be a sequence in $X$ that converges to $x$. Since f is continuous, We have 
+$$(\exists K_f \in \mathbb{N})(k \geq K_f \implies d_Y(f(x_k), f(x)) < \epsilon/2),$$
+by problem 8 of homework 3. Likewise, we have
+$$(\exists K_g \in \mathbb{N})(k \geq K_g \implies d_Y(g(x_k), g(x)) < \epsilon/2).$$
+Define $K := \max\{K_f, K_g \}$. Then, 
+\begin{align*}
+k \geq K \implies [d_Y(f(x_k), f(x)) < \epsilon/2] \land [d_Y(g(x_k), g(x)) < \epsilon/2].
+\end{align*}
+With this, we have 
+\begin{align*}
+d(h(x_k), h(x)) &=d((f(x_k), g(x_k)), (f(x), g(x)))\\
+&= d_Y(f(x_k), f(x)) + d_Y(g(x_k), g(x))\\
+&\leq \epsilon/2 + \epsilon/2\\
+&= \epsilon.
+\end{align*}
+Since this is true for any sequence in $X$ that converges to $x$, we can conclude that $h$ is continuous at $x$.  Since $x$ was arbitrary, we have that $h$ is continuous for all $x \in X$, as desired.
+\end{proof}
+
+\section*{Problem 12}
+To start this problem, we will prove a useful Lemma:
+\begin{lemma}
+Let $f,g: \mathbb{R} \to \mathbb{R}$ be continuous. Then
+\begin{enumerate}
+\item $af + bg$ is continuous for all $a, b \in \mathbb{R}$.
+\item $fg$ is continuous.
+\item If $f(\mathbb{R}) \cap \{0\} = \emptyset$, then $\frac{1}{f}$ is continuous.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}
+\item Let $a, b,t_0 \in \mathbb{R}$.  The case were either $a$ or $b$ is $0$ is trivial, so we will assume $a \not = 0$,  and $b \not = 0$. Let $\epsilon >0$. Since $f$ and $g$ are continuous at $t_0$, there exists a $\delta > 0$ such that
+\begin{align*}
+|t - t_0| < \delta \implies (|f(t) - f(t_0)| < \frac{\epsilon}{2|a|}) \land (|g(t) - g(t_0)| < \frac{\epsilon}{2|b|}).
+\end{align*}
+Then, for all $t \in \mathbb{R}$ with $|t - t_0| < \delta$, we have
+\begin{align*}
+|(af(t) + bg(t)) - (af(t_0) + bg(t_0))| &= |a(f(t) - f(t_0)) + b(g(t)) - g(t_0))| \\
+&\leq |a(f(t) - f(t_0))| + |b(g(t)) - g(t_0))| \\
+&= |a||f(t) - f(t_0)| + |b||g(t)) - g(t_0)| \\
+&< |a|\frac{\epsilon}{2|a|} + |b|\frac{\epsilon}{2|b|} \\
+&= \epsilon.
+\end{align*}
+Since $\epsilon$ and $t_0$ are arbitrary, we have that $af + bg$ is continuous.
+\item Let $\epsilon,\epsilon_0 > 0$, and let $t_0 \in \mathbb{R}$.   Since $f$ is continuous, there exists a $\delta_f > 0$ such that
+\begin{align*}
+|t - t_0| < \delta_f \implies |f(t) - f(t_0)| < \epsilon_0.
+\end{align*}
+Likewise, since $g$ is continuous, there exists a $\delta_g >0$ such that 
+\begin{align*}
+|t - t_0| < \delta_f \implies |g(t) - g(t_0)| < \epsilon_0.
+\end{align*}
+Define $\delta = \min\{\delta_f, \delta_g \}$. Then, we have that for all $t \in \mathbb{R}$ with $|t - t_0| < \delta$, 
+\begin{align*}
+|f(t)g(t) - f(t_0)g(t_0)| &= |f(t)g(t) - f(t_0)g(t_0) + f(t)g(t_0) - f(t)g(t_0)|\\
+&= |f(t)(g(t) - g(t_0)) + g(t_0)(f(t) - f(t_0))|\\
+&\leq |f(t)||g(t) - g(t_0)| + |g(t_0)||f(t) - f(t_0)|\\
+&< (|f(t_0)| + \epsilon_0)|g(t) - g(t_0)| + |g(t_0)||f(t) - f(t_0)|\\
+&< (|f(t_0)| + \epsilon_0)\epsilon_0 + |g(t_0)|\epsilon_0\\
+&= \epsilon_0 (|f(t_0)| + \epsilon_0 + |g(t_0)|).
+\end{align*}
+This expression gets arbitrarily small as we make $\epsilon_0$ arbitrarily small (and therefore we can make it smaller than $\epsilon$).  With this, we can can conclude that there exists a $\delta > 0$ such that
+\begin{align*}
+|t - t_0| < \delta_f \implies |f(t)g(t) - f(t_0)g(t_0)| < \epsilon.
+\end{align*}
+Since $\epsilon$ and $t_0$ are arbitrary, we have shown that $fg$ is continuous.
+\item Let $\epsilon,\epsilon_0 > 0$, and let $t_0 \in \mathbb{R}$.   Since $f$ is continuous,  there exists a $\delta >0$ such that 
+\begin{align*}
+|t - t_0| < \delta \implies |f(t) - f(t_0)| < \epsilon_0.
+\end{align*}
+\begin{align*}
+|\frac{1}{f(t)} - \frac{1}{f(t_0)}| &= |\frac{f(t_0) - f(t)}{f(t)f(t_0)}| \\
+&= \frac{|f(t_0) - f(t)|}{|f(t)||f(t_0)|} \\
+&< \frac{|f(t_0) - f(t)|}{(|f(t_0)| - \epsilon_0)|f(t_0)|} \\
+&< \frac{\epsilon_0}{(|f(t_0)| - \epsilon_0)|f(t_0)|}.
+\end{align*}
+Once more, we can make $\epsilon_0$ arbitrarily small, and in a similar fashion to part (2), we can conclude that $\frac{1}{f}$ is continuous.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+Let $K = \{(x, y): x^2 + y^2 = y \}$. Let $h:\mathbb{R} \to K$ be defined such that $h(t)$ is where the line segment from $(t, 0)$ to $(0, 1)$ meets $K$. Then, $h(t)$ is continuous.
+\end{theorem}
+
+\begin{proof}
+For $t \not = 0$, we have that the equation for the line segment from $(t, 0)$ to $(0, 1)$ is given by $y = -\frac{1}{t}x + 1$. Plugging this in for the expression $x^2 + y^2 = y$ yields
+\begin{align*}
+x^2 + y^2 &= y\\
+x^2 + (-\frac{1}{t}x + 1)^2 &= -\frac{1}{t}x + 1\\
+x^2 + \frac{x^2}{t^2} - \frac{2}{t}x + 1 &= -\frac{1}{t}x + 1\\
+x^2 + \frac{x^2}{t^2} - \frac{1}{t}x &= 0 \\
+x(x + x \frac{1}{t^2} - \frac{1}{t}) &= 0\\
+x(1 +  \frac{1}{t^2}) - \frac{1}{t} &= 0\\
+x &= \frac{1}{t(1 +  \frac{1}{t^2})}\\
+x &= \frac{1}{t +  \frac{1}{t}}\\
+x &= \frac{t}{t^2 +  1}.
+\end{align*}
+Plugging this back into our expression for $y$, we have
+\begin{align*}
+y &= -\frac{1}{t}x + 1\\
+&= -\left(\frac{1}{t}\right)\frac{t}{t^2 +  1} + 1\\
+&= 1 - \frac{1}{t^2 +  1}.
+\end{align*}
+Therefore,
+\begin{align*}
+h(t) = (\frac{t}{t^2 +  1}, 1 - \frac{1}{t^2 +  1}).
+\end{align*}
+Although we derived this expression under the assumption that $t \not = 0$, it is easy to see that this expression works for $t = 0$ as well.
+
+Trivially, we have that the function $f(t) = t$ is continuous. Using part 2 of Lemma 3, we have that $f(t) = t^2$ is continuous. From part 1 of Lemma 3, we have that $f(t) = t^2 + 1$ is continuous. From part 3 of Lemma 3, we have that $f(t) = \frac{1}{t^2 + 1}$ is continuous.  From part 2 of Lemma 3, we have $f(t) = \frac{t}{t^2 + 1}$ is continuous. Finally, from part 1 of Lemma 3, we have that $f(t) = 1 - \frac{1}{t^2 +  1}$ is continuous. 
+
+We have just shown that the $x$ and $y$ components of $h$ are continuous. From Theorem 2 in Problem 11, we can conclude that $h$ is continuous, as desired.
+\end{proof}
+\end{document}
