@@ -1,0 +1,136 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=.75in,right=.75in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Homework 6}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\section*{Problem 16}
+We will start this problem with an easy corollary to the theorem we have about all intervals in $\mathbb{R}$ being connected:
+\begin{corollary}
+Let $I \subseteq \mathbb{R}$, and let $a, b \in \mathbb{R}$. Then, the spaces $\{(a,  y): y \in I\}$ and $\{(a,  y): y \in I\}$ are connected.
+\end{corollary}
+
+\begin{proof}
+Define $f:I \to \{(a,  y): y \in I\}$ by $f(y) = (a,  y)$. Clearly $f$ is continuous. Since $I$ is connected, the topological invariance of connectedness tells us that $f(I)$ is connected. Since $f(I) = \{(a,  y): y \in I\}$, we have that $\{(a,  y): y \in I\}$ is connected. The argument for $\{(a,  y): y \in I\}$ is nearly identical.
+\end{proof}
+
+\begin{theorem}
+For some $z \in \mathbb{R}^2$,  the space $\mathbb{R}^2 \backslash \text{seg}[0, z]$ is connected.
+\end{theorem}
+
+\begin{proof}
+Let $z \in \mathbb{R}^2$, and let $|z| = d(0, z)$ denote the distance between the origin and $z$. Then, via a rotation about the origin, $\mathbb{R}^2 \backslash \text{seg}[0, z]$ is homeomorphic to $\mathbb{R}^2 \backslash \text{seg}[(0, 0), (|z|, 0)]$. Thus, by the topological invariance of connectedness, it will suffice to show that $\mathbb{R}^2 \backslash \text{seg}[(0, 0), (|z|, 0)]$ is connected.
+
+Let $A_r = \{(x, r): x \in \mathbb{R}\}$ be a horizontal line for $r \in \mathbb{R}\backslash\{0\}$. Let $L = \{(x, 0) \in \mathbb{R}^2: x < 0\}$, and let $R = \{(x, 0) \in \mathbb{R}^2: x > |z| \}$. Define $H = \{A: A = A_r \text{ for some } r\in \mathbb{R}\backslash\{0\} \lor A = L \lor A = R \}$. We have constructed $H$ in such a way that
+\begin{align*}
+ \bigcup_{A \in H} A = \mathbb{R}^2 \backslash \text{seg}[(0, 0), (|z|, 0)].
+\end{align*}
+By Corollary 1, we have that $A$ is connected for all $A \in H$. Taking advantage of Corollary 1 once more, we define two connected sets:
+\begin{align*}
+v_1 &= \{(-1, y) : y \in \mathbb{R}\}\\
+v_2 &= \{(|z| + 1, y) : y \in \mathbb{R}\}.
+\end{align*}
+We have $v_1 \cap A \not = \emptyset$ for all $A \in H \backslash\{R\}$, and we have $v_2 \cap A \not = \emptyset$ for all $A \in H \backslash\{L\}$. Thus, as we proved in class,  $v_1 \cup A$ is connected for all $A \in H \backslash\{R\}$, and $v_2 \cup A$ is connected for all $A \in H \backslash\{L\}$.  Define 
+\begin{align*}
+F_1 &= \{v_1 \cup A: A \in H \backslash\{R\}\\
+F_2 &= \{v_2 \cup A: A \in H \backslash\{L\}.
+\end{align*}
+By construction,  $A \cap B \not = \emptyset$ for all $A, B \in F_1$, and $A \cap B \not = \emptyset$ for all $A, B \in F_2$. Thus,  for
+\begin{align*}
+F_3 &= \bigcup_{A \in F_1} A, \text{ and}\\
+F_4 &=\bigcup_{A \in F_2} A, 
+\end{align*}
+we have $F_3, F_4$ are connected. In a similar manner, we have that $F_3 \cap F_4 \not = \emptyset$, since, for example, $A_1 \subseteq F_3$ and $A_1 \subseteq F_4$. Therefore, $F_3 \cup F_4$ is connected.  By design, we have 
+\begin{align*}
+F_3 \cup F_4 = \mathbb{R}^2 \backslash \text{seg}[(0, 0), (|z|, 0)],
+\end{align*}
+which leads us to conclude that $\mathbb{R}^2 \backslash \text{seg}[(0, 0), (|z|, 0)]$ is connected.
+\end{proof}
+
+\begin{remark}
+The intuition behind this proof is breaking $\mathbb{R}^2 \backslash \text{seg}[(0, 0), (|z|, 0)]$ into connected horizontal lines, and then joining them together in such a way to show $\mathbb{R}^2 \backslash \text{seg}[(0, 0), (|z|, 0)]$ is connected. This method is laborious, though fairly straightforward.
+\end{remark}
+
+\section*{Problem 17}
+\begin{theorem}
+Let $X, Y$ be topological spaces and let $f:X \to Y$ be a continuous mapping.  Then $f(C(x))$ is not, in general, a component of $f(x)$ if $C(x)$ is a component of $x$. 
+\end{theorem}
+
+\begin{proof}
+Let $(a, b) \subseteq \mathbb{R}$ be an interval, and consider the function $f:(a, b) \to \mathbb{R}$, defined by $f(x) = x$. We have that $f$ is continuous (let $\delta = \epsilon$, and continuity follows). Also, $(a, b)$ is a maximal connected subset of $(a, b)$.  Let $x \in (a, b)$. Then,  $(a, b) = C(x)$.  By design, $f((a, b)) = (a, b)$ is a connected set containing $f(x)$. However, $\mathbb{R}$ is a connected set containing $f(x)$,  $f((a, b)) \subseteq \mathbb{R}$, and $f((a, b)) \not = \mathbb{R}$. Therefore, by our theorem on component facts, $f(C(x))$ is not a component of $f(x)$.
+\end{proof}
+
+\section*{Problem 18}
+\begin{theorem}
+$\mathbb{R}$ and $\mathbb{R}^2$ are not homeomorphic.
+\end{theorem}
+
+\begin{proof}
+Suppose, for the sake of contradiction, that there exists a homeomorphism $f: \mathbb{R} \to \mathbb{R}^2$.  Let $x \in \mathbb{R}$. Since $f^{-1}$ is continuous, $\restr{f^{-1}}{\mathbb{R}^2 \backslash \{f(x)\}}$ is also continuous.  We have $f^{-1}(\mathbb{R}^2 \backslash \{f(x)\}) = \mathbb{R} \backslash \{x\}$. By Theorem 1, $\mathbb{R}^2 \backslash \{f(x)\}$ is connected. Since $\mathbb{R} \backslash \{x\}$ is not an interval, it is not connected. Therefore, we have a continuous function mapping a connected space to a non-connected space, which is a contradiction.  From this, we can conclude that $\mathbb{R}$ and $\mathbb{R}^2$ are not homeomorphic.
+\end{proof}
+
+\end{document}
