@@ -1,0 +1,229 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=.75in,right=.75in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+\usepackage{pgfplots}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Homework 7}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\section*{Problem 19}
+We will start this problem by proving some useful lemmas:
+\begin{lemma}
+Let $X$ be a topological space, and let $A \subseteq X$ be connected. Then, for any $K \subset X$ with $A \subseteq K \subseteq \bar{A}$, $K$ is connected.
+\end{lemma}
+
+\begin{proof}
+Let $K \subset X$ with $A \subseteq K \subseteq \bar{A}$. Suppose, for sake of contradiction, that $K$ is not connected. Then, there exists a continuous function $f:K \to \bar{2}$ that is surjective. Suppose, without loss of generality, that $f(A) = \{0\}$.  Then,  by continuity and surjectivity of $f$, we have $f^{-1}(\{1\}) \subseteq K$ is open and $\exists x \in f^{-1}(\{1\})$. Since $x \in \bar{A}$,  we have 
+\begin{align*}
+f^{-1}(\{1\}) \cap A \not = \emptyset &\implies (\exists a \in A)(f(a) = 1)
+\end{align*}
+which contradicts our assumption that $f(A) = \{0\}$. Therefore, $K$ is connected.
+\end{proof}
+
+\begin{lemma}
+If $X$ is a path connected space, then $X$ is connected.
+\end{lemma}
+
+\begin{proof}
+Suppose $X$ is not connected. Then,  there exists a continuous surjection $f: X \to \bar{2}$. Since $f$ is surjective, there exist $a, b \in X$ such that $f(a) = 0$ and $f(b) = 1$.  Let $\phi : [0, 1] \to X$ be such that $\phi(0) = a$ and $\phi(1) = b$. Then,  $f \circ \phi : [0, 1] \to \bar{2}$ is a surjection. Since $[0, 1]$ is connected, $f \circ \phi$ is not continuous, which implies $\phi$ is not continuous. From this we can conclude that $X$ is not path connected, and we have proven the contrapositive.
+\end{proof}
+
+\begin{theorem}
+Let $K = \{(t, t/n): t \in [0, 1] \land n \in \mathbb{N} \} \cup \{(t, 0): t \in [1/2, 1]\}$ in $\mathbb{R}^2$. Then
+\begin{enumerate}
+\item $K$ is connected
+\item $K$ is not path connected
+\end{enumerate}
+ \begin{center}
+ 	\scalebox{0.8}{\input{plots19.pgf}}
+ \end{center}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item We will first show that $A = K \backslash  \{(t, 0): t \in [1/2, 1]\}$ is connected. As we proved in class,  if there is a path from $(0, 0)$ to $ x$ for all $x \in A$,  then $A$ is path connected, and therefore connected (by Lemma 2).  Let $(t, t/n) \in K$ for some $t \in [0, 1]$ and some $n \in \mathbb{N}$. Then, we have a continuous path $\phi: [0, 1] \to A$ between $(0, 0)$ and $(t, t/n)$ defined by 
+\begin{align*}
+\phi(x) = (xt, xt/n).
+\end{align*}
+Therefore, $A$ is connected.
+
+Now we would like to show that $\{(t, 0): t \in [1/2, 1]\} \in \bar{A}$. Let $(t_1, 0) \in \{(t, 0): t \in [1/2, 1]\}$, and let $\epsilon > 0$. We have, for any $n \in \mathbb{N}$,
+\begin{align*}
+d((t_1, 0), (t_1, t_1/n)) &= \sqrt{(t_1 - t_1)^2 + (0 - t_1/n)^2}\\
+&= t_1/n.
+\end{align*}
+Thus, letting $n > 1/\epsilon$, we have
+\begin{align*}
+d((t_1, 0), (t_1, t_1/n)) &<  t_1/(1/\epsilon)\\
+&= \epsilon.
+\end{align*}
+Therefore, 
+\begin{align*}
+(t_1, t_1/n) \in B((t_1, 0); \epsilon) &\implies B((t_1, 0); \epsilon) \cap A \not = \emptyset\\
+&\implies (t_1, 0) \in \bar{A} && \text{since } \epsilon \text{ is arbitrary}\\
+&\implies \{(t, 0): t \in [1/2, 1]\} \subseteq{\bar{A}} && \text{since } (t_1, 0) \text{ is arbitrary}\\
+&\implies K \subseteq \bar{A}.
+\end{align*}
+Since we have, by design, that $A \subseteq K$, we can conclude from Lemma 1 that $K$ is connected.
+
+\item Suppose, for the sake of contradiction, that there exists a continuous $f:[0, 1] \to K$ with $f(0) = (0, 0)$ and $f(1) = (1, 0)$. Define $f_x:[0, 1] \to p_x(K)$ and $f_y:[0, 1] \to p_y(K)$ by
+\begin{align*}
+f_x = p_x \circ f \text{ and } f_y = p_y \circ f. 
+\end{align*}
+Since $f$ is continuous,  we have that $f_x$, and $f_y$ are continuous.  
+
+
+Define $t_0 = \sup \{t \in [0, 1] : f_x(t) \leq \frac{1}{3}\}$. Since $\{t \in [0, 1] : f_x(t) \leq \frac{1}{3}\}$ has an upper bound, the least upper bound property of the reals tells us that $t_0$ exists.  Furthermore, since $f_x(0) = 0$, and $f_x(1) = 1$, the intermediate value theorem tells us that $f(t_0) = \frac{1}{3}$.  
+
+Define $R:[t_0, 1] \to \mathbb{R}$ by $R(t) = \frac{f_y(t)}{f_x(t)}$.  We have that $f_x(t) \not = 0$ on the interval $[t_0, 1]$. This, combined with the fact that $f_x$ and $f_y$ are continuous, means $R$ is continuous.  We have that $f_y(t_0) = \frac{f_x(t_0)}{n} = \frac{1}{3n}$ for some $n \in \mathbb{N}$, because $f(t_0) \not \in \{(t, 0): t \in [1/2, 1]\}$.  Thus, $R(t_0) = \frac{1}{n}$. Also, by initial assumption of $f$, we have $R(1) = 0$. By the Intermediate Value Theorem, there exists some $x_0 \in [t_0, 1]$ such that $R(x_0) = \frac{\sqrt{2}}{2n}$. However, for each $x \in (0, 1]$,  there exists an $m \in \mathbb{N}$ such that $R(x) = \frac{1}{m}$ whenever $f_y(x) > 0$. Thus, $R(x_0) = \frac{1}{m}$ for some $m \in \mathbb{N}$. However, this yields
+\begin{align*}
+\frac{\sqrt{2}}{2n} = \frac{1}{m},
+\end{align*}
+and we have equated an irrational number and a rational number, which is a contradiction.  With this, we have shown that $K$ is not path connected.
+\end{enumerate}
+\end{proof}
+
+\section*{Problem 20}
+\begin{theorem}
+The function $f:[0, \infty) \to \mathbb{R}$ defined by $f(x) = \sqrt{x}$ is uniformly continuous.
+\end{theorem}
+ 
+\begin{proof}
+Let $\epsilon > 0$, and let $x_1, x_2 \in \mathbb{R}$, with $x_1 \leq x_2$. Then
+\begin{align*}
+d(f(x_1), f(x_2)) &= |\sqrt{x_1} - \sqrt{x_2}|\\
+d(f(x_1), f(x_2))^2 &= |\sqrt{x_1} - \sqrt{x_2}|^2\\
+&= |x_{1} + x_{2} -2\sqrt{x_1}\sqrt{x_2}|\\
+&= |x_{1} + x_{2} -2\sqrt{x_1x_2}|\\
+&\leq |x_{1} + x_{2} -2\sqrt{x_{1}^2}| && \text{Since } x_1 \leq x_2\\
+&= |x_{1} + x_{2} -2x_{1}|\\
+&= x_2 - x_1\\
+&= d(x_1, x_2).
+\end{align*}
+Taking the square root of both sides, we have
+\begin{align*}
+d(f(x_1), f(x_2)) \leq \sqrt{d(x_1,x_2)}.
+\end{align*}
+Therefore, letting $\delta = \epsilon^2$, we have
+\begin{align*}
+ |x_1 - x_2| < \delta \implies d(f(x_1), f(x_2)) < \sqrt{\epsilon^2} \implies d(f(x_1), f(x_2)) <  \epsilon.
+\end{align*}
+Since our $x_1$ and $x_2$ are arbitrary, we have shown that $f$ is uniformly continuous.
+\end{proof}
+ 
+\section*{Problem 21}
+\begin{theorem}
+Let $f:(X, d) \to (X, \rho)$ be a homeomorphism. Define
+\begin{align*}
+d^*:X \times X \to \mathbb{R} \text{ by } d^*(x, y) = \rho(f(x), f(y)).
+\end{align*}
+Then $d^*$ is a metric on $X$ which is equivalent to $d$.
+\end{theorem}
+ 
+\begin{proof}
+We will start by showing that $d*$ is a metric.  Let $x, y \in X$. Since $\rho$ is a metric, it follows immediately that $d^*(x, y) \geq 0$. Since $f$ is a homeomorphism, $f$ is injective. By this, we have that $x = y \iff f(x) = f(y)$. Since $\rho$ is a metric, we have that $\rho(f(x), f(y)) = 0 \iff f(x) = f(y)$. From this, we have $d^*(x, y) = 0 \iff x = y$, and $d^*$ fits the first criteria of a metric.
+ 
+We have 
+\begin{align*}
+d^*(x, y) &= \rho(f(x), f(y))\\
+&= \rho(f(y), f(x)) && \text{Since } \rho \text{ is a metric}\\
+&= d^*(y, x),
+\end{align*}
+and $d^*$ fits the second criteria of a metric.
+
+Now let $x, y, z \in X$. Then
+\begin{align*}
+d^*(x, z) &= \rho(f(x), f(z))\\
+&\leq \rho(f(x), f(y)) + \rho(f(y), f(z)) && \text{Since } \rho \text{ is a metric}\\
+&=d^*(x, y) + d^*(y, z),
+\end{align*}
+And we can finally conclude that $d^*$ is a metric on $X$.
+
+We will now show that $d$ and  $d^*$ are equivalent.  To do this, we will first show that $\Tau_d \subseteq \Tau_{d^*}$. Let $U \in \Tau_d$, and let $x_0 \in U$. By definition of openness in a metric space,  there exists a radius $r_1 \in \mathbb{R}$ such that $B_d(x_0;r_1) \subseteq U$. Since $f$ is a homeomorphism, and all homemorphisms are open,  $f(B_d(x_0; r_1)) \in \Tau_\rho$. Again, using the definition of openness, there exists a radius $r_2 \in \mathbb{R}$ such that $B_\rho(f(x_0);r_2) \subseteq f(B_d(x_0; r_1))$.  By surjectivity of $f$, for all $y \in B_\rho(f(x_0);r_2))$, there exists $x \in X$ such that $f(x) = y$. Thus, 
+\begin{align*}
+B_\rho(f(x_0);r_2) &= \{f(x) \in X: \rho(f(x_0), f(x)) \leq r_2\}\\
+&= f(\{x \in X: d^*(x_0, x) \leq r_2\})\\
+&=f(B_{d^*}(x_0; r_2)).
+\end{align*}
+With this, we have
+\begin{align*}
+f(B_{d^*}(x_0; r_2)) \subseteq f(B_d(x_0; r_1)) &\implies f^{-1}(f(B_{d^*}(x_0; r_2))) \subseteq f^{-1}(f(B_d(x_0; r_1)))\\
+&\implies B_{d^*}(x_0; r_2) \subseteq B_d(x_0; r_1)\\
+&\implies B_{d^*}(x_0; r_2) \subseteq U, && \text{Since } B_d(x_0;r_1) \subseteq U
+\end{align*}
+and we can conclude that $U \in \Tau_{d^*}$, which means $\Tau_d \subseteq \Tau_{d^*}$.
+
+Now let $U \in \Tau_{d^*}$, and let $x_0 \in \Tau_{d^*}$. Then, there exists a radius $r \in \mathbb{R}$ such that $B_{d^*}(x_0; r) \subseteq U$. Now we have
+\begin{align*}
+B_{d^*}(x_0; r) &= \{x \in X: d^*(x_0, x) < r\}\\
+&= \{x \in X: \rho(f(x_0), f(x)) < r\}\\
+&= f^{-1}(\{f(x) \in X: \rho(f(x_0), f(x)) < r\})\\
+&= f^{-1}(B_\rho(f(x_0); r)),
+\end{align*}
+thus, $f^{-1}(B_\rho(f(x_0); r)) \subseteq U$. By continuity of $f$, we have $f^{-1}(B_\rho(f(x_0); r)) \in \Tau_d$. Thus, we have have found an open neighborhood in $\Tau_d$ containing $x_0$ that is a subset of $U$, and we've shown that $\Tau_{d^*} \subseteq \Tau_d$. From this, we have that $\Tau_{d^*} =  \Tau_d$, which implies $d^* \sim d$.
+\end{proof}
+
+\end{document}
