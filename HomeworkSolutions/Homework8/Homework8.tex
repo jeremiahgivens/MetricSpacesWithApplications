@@ -1,0 +1,194 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=.75in,right=.75in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+\usepackage{pgfplots}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Homework 8}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\section*{Problem 24}
+We will start this problem by proving a useful lemma.
+\begin{lemma}
+Let $(X, d)$ be a metric space. Then, if every sequence in $X$ has a Cauchy subsequence, $X$ is totally bounded.
+\end{lemma}
+
+\begin{proof}
+We will prove the contrapositive. Suppose $X$ is not totally bounded. Let $\epsilon > 0$, and let $x_0 \in X$. Since $X$ is not totally bounded, $B(x_0; \epsilon)$ does not cover $X$. Thus there exists an $x_1 \in X$ such that $x_1 \not \in B(x_0; \epsilon)$. Continuing in this manner, we can choose $x_n \in X$ by 
+\begin{align*}
+x_n \not \in \bigcup_{i = 0}^{n-1} B(x_i; \epsilon)
+\end{align*}
+for all $n \in \mathbb{N}$. If for any $n$ we fail to find such an $x_n$, this means we have created a finite ($n-1$ element) $\epsilon$-net, which contradicts our assumption that $X$ is not totally bounded.
+
+With this, we have created a sequence $\{x_n \}_{n=0}^\infty$ in $A$ such that $d(x_i, x_j) \geq \epsilon$ for all $i,j \in \mathbb{N}$, from which it follows that $\{x_n \}_{n=0}^\infty$ has no Cauchy subsequence. We have now proven the contrapositive, and our proof is complete.
+\end{proof}
+
+\begin{definition}[Closed Box] 
+A closed box $A \subseteq \mathbb{R}^n$ is a set that can be written as $\Pi_{i = 1}^n [a_i, b_i]$ where for all $i \in \{1,...,n\}$ and for some $l >0$, we have $b_i - a_i = l$. We say this box has width $l$.
+\end{definition}
+
+\begin{lemma}
+Any closed box $A$ in $\mathbb{R}^n$ can be written as the union of $2^n$ closed boxes of width $l/2$.
+\end{lemma}
+
+\begin{proof}
+Consider first the one dimensional case, $n = 1$. Then $A = [a, b]$ for some $a, b \in \mathbb{R}$ such that $b - a = l$. Then, $A = [a, a+l/2] \cup [a + l/2, b]$, and we have written $A$ as the union of two closed boxes of width $l/2$.
+
+Now,  utilizing what we just showed for the one dimensional case, we can see that for any $n \in \mathbb{N}$,
+\begin{align*}
+A &= \Pi_{i=1}^n ([a_i, b_i])\\
+&= \Pi_{i=1}^n ([a_i, a_i + l/2] \cup [a_i+ l/2, b_i]).
+\end{align*}
+Let $X = \{\Pi_{i=1}^n x_i : x_i \in \{[a_i, a_i + l/2], [a_i+ l/2, b_i]\} \}$.  Clearly, every element of $X$ is a closed box of width $l/2$. By elementary combinatorics, we can also see that $X$ has $2^n$ elements. We propose that $A =  \bigcup_{x \in X} x$. We have
+\begin{align*}
+a \in \Pi_{i=1}^n ([a_i, a_i + l/2] \cup [a_i+ l/2, b_i]) &\iff (\forall i \in \{1,...,n\})(p_i(a) \in ([a_i, a_i + l/2] \cup [a_i+ l/2, b_i]))\\
+&\iff (\forall i \in \{1,...,n\})(p_i(a) \in [a_i, a_i + l/2] \lor p_i(a) \in [a_i+ l/2, b_i])\\
+&\iff (\forall i \in \{1,...,n\})(\exists x_i \in \{[a_i, a_i + l/2], [a_i+ l/2, b_i]\})(p_i(a) \in x_i)\\
+&\iff a \in \bigcup_{x \in X},
+\end{align*}
+and our proof is complete.
+\end{proof}
+
+\begin{theorem}
+Let $A \subset \mathbb{R}^n$ be bounded. Then $A$ is totally bounded.
+\end{theorem}
+
+\begin{proof}
+Let $x \in A$, and let $\epsilon > 0$.  For two points $x, y$ in a box of width $l$, we have 
+\begin{align*}
+d(x, y) &= \sqrt{\sum_{i = 1}^n (p_i(x) - p_i(y))^2}\\
+&\leq \sqrt{\sum_{i = 1}^n \max\{(p_j(x) - p_j(y))^2 :j \in \{1,...,n\} \}} \\
+&= \sqrt{n} \max\{|(p_j(x) - p_j(y)| :j \in \{1,...,n\} \} \}\\
+&\leq l \sqrt{n}.
+\end{align*}
+Thus, for any points $x, y$ in an $n$ dimensional box of width $l = \frac{\epsilon}{\sqrt{n}}$, we have 
+\begin{equation}
+d(x, y) \leq \epsilon.
+\end{equation}
+
+Let $\{x_n \}_{n=1}^\infty$ be a sequence in $A$.  By Lemma 1, it will suffice to show that $\{x_n \}_{n=1}^\infty$ has a Cauchy Subsequence.  Since $A$ is bounded, there exists an $r > 0$ such that $d(x, x_1) \leq r$ for all $x \in A$.  We have, for all $x \in A$, 
+\begin{align*}
+r &\geq d(x, x_1)\\
+&= \sqrt{\sum_{i = 1}^n (p_i(x) - p_i(x_1))^2}\\
+&\geq  |p_i(x) - p_i(x_1)| \text{ for all } i \in \{1,...,n\}.
+\end{align*}
+Thus, we have $A \subseteq b_1$, where $b_1 \subseteq \mathbb{N}^n$ is a box centered at $x_1$ with width $l = r/2$. From Lemma 2, we can divide split $b_1$ into $2^n$ boxes of width $l/2 = r/4$. Since $\{x_n \}_{n=1}^\infty$ is infinite, one of these boxes must have an infinite subsequence of $\{x_n \}_{n=1}^\infty$ inside of it; denote this box $b_2$. Following this procedure, we can define a set of boxes $\{b_n: n \in \mathbb{N} \}$ where $b_n$ is a closed box of width $l = \frac{r}{2^n}$ that results from splitting the previous box into $2^n$ boxes and choosing one that contains an infinite number of terms in the sequence $\{x_n \}_{n=1}^\infty$. By design, $b_{n+1} \subseteq b_{n}$ for all $n \in \mathbb{N}$. 
+
+Let $\{x_{n_j}\}_{j=1}^\infty$ be a subsequence of $\{x_n \}_{n=1}^\infty$ such that $x_{n_j} \in b_j$ for all $j \in \mathbb{N}$. Picking  an $N \in \mathbb{N}$ large enough that $\frac{r}{2^n} \leq \frac{\epsilon}{\sqrt{n}}$, we have from (1) that $d(x_{n_j},  x_{n_k}) \leq \epsilon$ for all $j, k \geq N$. Thus, since $\epsilon$ was arbitrary,  $\{x_{n_j}\}_{j=1}^\infty$ is a Cauchy subsequence of $\{x_n \}_{n=1}^\infty$, and we can conclude that $A$ is totally bounded.
+\end{proof}
+\section*{Problem 23}
+\begin{theorem}
+Every sequentially compact metric space is separable. 
+\end{theorem}
+
+\begin{proof}
+Let $A$ be a sequentially compact metric space. Define $B_{x}^n = B(x; \frac{1}{n})$ for $x \in A$ and $n \in \mathbb{N}$. Let $x_{0}^n \in A$ be arbitrary for all $n \in \mathbb{N}$. Choose $x_{i}^n \in A$ such that $x_{i}^n \in A \backslash(\bigcup_{j = 0}^{i - 1} B_{x_{j}^n}^n)$, for $i \in \mathbb{N}$. Suppose we can choose these for all $i \in \mathbb{N}$. Then,  we'd have a sequence $\{x_{i}^n\}_{i = 0}^\infty$. By design, we have $d(x_{i}^n, x_{j}^n) \geq \frac{1}{n}$ for all $i,j \in \mathbb{N}$. However, since $A$ is sequentially compact, this must have a Cauchy subsequence, which is a contradiction. Therefore, there exists some largest $m_n \in \mathbb{N}$ such that $x_{m_n}^n$ exists.
+
+Define $D \subseteq A$ by 
+\begin{align*}
+D = \{x_{i}^n : n \in \mathbb{N} \land i \in \{1,..., m_n \}\}.
+\end{align*}
+Clearly, since $D$ is a countable union of finite sets, $D$ is countable. We propose that $\bar{D} = A$. Since $\bar{D} \subseteq A$, it will suffice to show that $A \subseteq \bar{D}$.
+
+Let $x \in A$, and let $n \in \mathbb{N}$. Suppose, for the sake of contradiction, that for all $i \in \{1, ..., m_n\}$ that $x_{i}^n \not \in B_{x}^n$. Then,
+\begin{align*}
+d(x_{i}^n, x) \geq \frac{1}{n} &\implies x \not \in B_{x_{i}^n}^n\\
+&\implies x \not \in \bigcup_{j = 0}^{m_n} B_{x_{j}^n}^n\\
+&\implies x \in A \backslash \left(\bigcup_{j = 0}^{m_n} B_{x_{j}^n}^n\right)\\
+&\implies x^{n}_{m_n + 1} \text{ is well defined,}
+\end{align*}
+which is a contradiction. Therefore, there exists some $x_i^n \in B_x^n$. Since this is true for all $n \in \mathbb{N}$, we have that $x \in \bar{D}$, and we have proven that $A$ is separable.
+\end{proof}
+
+\section*{Problem 24}
+\begin{theorem}
+Let $X$ be compact and let $f:X \to \mathbb{R}$ be upper semi-continuous. Then $f$ attains its supremum.
+\end{theorem}
+
+\begin{proof}
+Since $f$ is upper semi-continuous, $f^{-1}((-\infty, \alpha)) \in \Tau$, for all $\alpha \in \mathbb{R}$.  Let $x \in X$. Then,  it follows that 
+\begin{align*}
+f(x) \in (-\infty,f(x) + 1) &\implies x \in f^{-1}((-\infty,f(x) + 1))\\
+&\implies (\forall x \in X)(\exists \alpha \in \mathbb{R})(x \in f^{-1}((\infty, \alpha)))\\
+&\implies \{f^{-1}((\infty, \alpha)): \alpha \in \mathbb{R} \} \text{ forms an open cover of } X.
+\end{align*}
+Since $X$ is compact, there exists a finite subcover $\{f^{-1}((-\infty, \alpha_i)): i \in \{1,...,n\} \}$ of $X$. Thus, we have that $\max \{\alpha_i: i \in \{1,...,n\} \}$ is an upper bound of $f(X)$. By the least upper bound property of the real numbers, the supremum
+\begin{align*}
+M = \sup\{f(x): x \in X \}
+\end{align*}
+exists.
+
+Now lets suppose, for sake of contradiction, that $f$ never attains its supremum. Then, we have that 
+\begin{align*}
+\{f^{-1}((-\infty, M - \frac{1}{n})): n \in \mathbb{N}\}
+\end{align*}
+forms an open covering of $X$. By compactness of $X$, there exists a finite open subcovering
+\begin{align*}
+\{f^{-1}((-\infty, M - \frac{1}{n_i})): i \in \{1, ..., n\} \}
+\end{align*}
+of X. Define $m = \max\{n_i:  i \in \{1, ..., n\}\}$. Then, we have that for all $x \in X$, $f(x) < M - \frac{1}{m}$. However, $M - \frac{1}{m} < M$, so we have just contradicted the fact that $M$ is a supremum. Therefore, $f$ must attain it's supremum.
+\end{proof}
+
+\end{document}

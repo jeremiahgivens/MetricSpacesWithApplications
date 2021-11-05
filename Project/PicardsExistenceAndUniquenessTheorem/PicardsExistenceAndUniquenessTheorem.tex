@@ -1,0 +1,270 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=.75in,right=.75in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+\usepackage{pgfplots}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Picard's Existence and Uniqueness Theorem}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{\fill}
+\begin{center}
+{\Huge Picard's Existence and Uniqueness Theorem}\\
+Author: Jeremiah Givens\\
+Professor: Dr. Claudio Morales\\
+Deparment of Mathematics, University of Alabama in Huntsville
+\end{center}
+\vspace*{\fill}
+\end{titlepage}
+
+\section{Introduction}
+The main objective of this paper is to examine a very practical application of Banach's fixed point theorem: Picard's Existence and Uniqueness Theorem for Ordinary Differential Equations. We will begin by proving some useful lemmas, which we will then use to prove Picard's theorem. After proving the theorem, we will then look at a few example differential equations that Picards theorem proves the existence of solutions to, and we will use an iterative technique, known as the Picard Iteration, to approximate the solutions.
+
+\section{Preliminaries}
+The focus of this paper is on solutions to explicit ordinary differential equations of the form
+\begin{align*}
+x' = f(t, x)
+\end{align*}
+where $x: \mathbb{R} \to \mathbb{R}$, $f: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$, and the prime denotes differentiation of $x$ with respect to $t$.  Specifically, we are interested in initial value problems, where
+\begin{align*}
+x(t_0) = x_0.
+\end{align*}
+
+\begin{lemma}
+Let $x: [a, b] \to \mathbb{R}$ be continuous. Then, $x$ is bounded, and $x$ achieves it's maximum.
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+[a, b] \text{ is compact} &\implies f([a, b]) \text{ is compact} && \text{continuous image of compact set}\\
+&\implies f([a, b]) \text{ is closed and bounded} && \text{by the Heine-Borel Theorem, since } f([a, b]) \subseteq \mathbb{R}^2\\
+&\implies f \text{ is bounded}.
+\end{align*}
+
+Now we need to show that $x$ achieves its maximum.  We know from our argument above, that $x$ has an upper bound. Thus, the least upper bound property of the real numbers tells us that the supremum $M = \sup \{x(t): t \in [a, b] \}$ exists. By the definition of a supremum, we can choose a sequence $\{t_n \}_{n \in \mathbb{N}}$ such that $M- \frac{1}{n} \leq x(t_n) \leq M$. Clearly, the sequence $\{x(t_n)\}_{n \in \mathbb{N}}$ converges to $M$. Since $[a, b]$ is compact, and therefore sequentially compact, we have that $\{t_n \}_{n \in \mathbb{N}}$ has a subsequence $\{t_{n_i} \}_{i \in \mathbb{N}}$ that converges in $[a, b]$. By definition of continuity, $\{x(t_{n_i}) \}_{i \in \mathbb{N}}$ converges. Since a subsequence of any convergent sequence converges to the same limit, we have that $\{x(t_{n_i}) \}_{i \in \mathbb{N}}$ converges to $M$. Therefore,  $x$ achieves its maximum at $t = \lim_{i \to \infty} x(t_{n_i})$.
+\end{proof}
+
+\begin{lemma}
+Let $C$ equal the set of all continuous real-valued functions on the closed interval $[a, b]$. Then, $C$ forms a metric space with the metric $d$ defined by
+\begin{align*}
+d(x, y) = \max_{t \in [a, b]} |x(t) - y(t)|.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+We must first start with showing that $d$ is well defined.  Let $x, y: [a, b] \to \mathbb{R}$ be continuous functions.  We know that the difference of two continuous functions is continuous, thus the function $x(t) - y(t)$ is continuous. Likewise, we have that the composition of continuous functions is continuous. Thus, since the absolute value function is continuous, we have that the function $|x(t) - y(t)|$ is continuous. Thus, by Lemma 1,  $\max_{t \in [a, b]} |x(t) - y(t)|$ exists, and $d$ is well defined.
+
+Now we must show that $d$ is a metric.  Let $x, y \in C$. By definition absolute value, we clearly have that $d(x, y) \geq 0$. Now we have
+\begin{align*}
+d(x, y) = 0 &\iff \max_{t \in [a, b]} |x(t) - y(t)| = 0\\
+&\iff (\forall t \in [a, b])(0 \leq |x(t) - y(t)| \leq 0) && \text{definition of absolute value and max}\\
+&\iff (\forall t \in [a, b])(|x(t) - y(t)| = 0)\\
+&\iff (\forall t \in [a, b])(x(t) = y(t))\\
+&\iff x = y.
+\end{align*}
+Thus, $d$ fits the first criteria of a metric.
+
+Following easily from the definition of absolute value, we have
+\begin{align*}
+d(x, y) &= \max_{t \in [a, b]} |x(t) - y(t)|\\
+&= \max_{t \in [a, b]} |y(t) - x(t)|\\
+&= d(y, x),
+\end{align*}
+and $d$ fits the second criteria of a metric.
+
+Let $x,y,z \in C$. We have 
+\begin{align*}
+d(x, z) &=  \max_{t \in [a, b]} |x(t) - z(t)|\\
+&= \max_{t \in [a, b]} (|x(t) - y(t)| + |y(t) - z(t)|) && \text{Since the absolute value forms a metric on } \mathbb{R}.
+\end{align*}
+We want to show that
+\begin{align*}
+\max_{t \in [a, b]} (|x(t) - y(t)| + |y(t) - z(t)|) &\leq \max_{t \in [a, b]} |x(t) - y(t)| + \max_{t \in [a, b]} |y(t) - z(t)|.
+\end{align*}
+By Lemma 1, all of these maxes are achieved. Therefore,  we can define $t_1, t_2, t_3 \in [a, b]$ to be such that 
+\begin{align*}
+|x(t_1) - y(t_1)| + |y(t_1) - z(t_1)|&= \max_{t \in [a, b]} (|x(t) - y(t)| + |y(t) - z(t)|)\\
+|x(t_2) - y(t_2)| &= \max_{t \in [a, b]} |x(t) - y(t)|\\
+|y(t_3) - z(t_2)| &= \max_{t \in [a, b]} |y(t) - z(t)|.
+\end{align*}
+In terms of $t_1, t_2, $ and $t_3$, we want to show that
+\begin{align*}
+|x(t_1) - y(t_1)| + |y(t_1) - z(t_1)| \leq |x(t_2) - y(t_2)| + |y(t_3) - z(t_2)|.
+\end{align*}
+We have
+\begin{align*}
+|x(t_1) - y(t_1)| + |y(t_1) - z(t_1)| &\leq |x(t_2) - y(t_2)|+ |y(t_1) - z(t_1)| \text{, since } |x(t_1) - y(t_1)| \leq |x(t_2) - y(t_2)| \text{ by def.  of } t_2 \\
+&\leq |x(t_2) - y(t_2)|+ |y(t_3) - z(t_3)| \text{, since } |y(t_1) - z(t_1)| \leq |y(t_3) - z(t_3)| \text{ by def.  of } t_3,
+\end{align*}
+and we have shown that $d$ satisfies the triangle inequality. With this, we have finally shown that $d$ is a metric on $C$.
+\end{proof}
+
+\begin{lemma}
+The metric space $(C, d)$ from the previous lemma is complete.
+\end{lemma}
+
+\begin{proof}
+Let $\{x_n\}_{n \in \mathbb{N}}$ be a Cauchy sequence in $C$.  Define $f = \lim_{n \to \infty} x_n$.  We wish to show that $f \in C$. Let $\epsilon > 0$, and let $p_0 \in [a, b]$. Since $\{x_n\}_{n \in \mathbb{N}}$ converges to $f$, there exists an $n \in \mathbb{N}$ such that $d(x_n, f) < \epsilon/3$. By definition of our metric, this implies $|x_n(p) - f(p)| < \epsilon/3$ for all $p \in [a, b]$.  Now, since $x_n$ is continuous, 
+\begin{align*}
+(\exists \delta > 0)(\forall p \in [a, b])(|p - p_0| < \delta \implies |x_n(p) - x_n(p_0)| < \epsilon/3).
+\end{align*}
+Then, for all $p \in [a, b]$ with $|p-p_0| < \delta$, we have 
+\begin{align*}
+|f(p) - f(p_0)| &\leq |f(p) - x(p)|  + |f(p_0) - x_n(p)| && \text{by triangle inequality}\\
+&\leq |f(p) - x_n(p)|  + |f(p_0) - x_n(p_0)|  + |x_n(p) - x_n(p_0)| && \text{again, by triangle inequality}\\
+&\leq  \epsilon/3 +  \epsilon/3 +  \epsilon/3\\
+&= \epsilon.
+\end{align*}
+Thus, $f$ is continuous at $p_0$. Since $p_0$ was arbitrary, $f$ is continuous, and we can conclude that $f \in C$. Thus, $C$ is complete.
+\end{proof}
+
+\begin{lemma}
+Let $x_0 \in \mathbb{R}$, and let $c \in (0, \infty)$. Let $\tilde{C}$ be a subspace of the metric space from Lemma 1, consisting of all functions $x \in C$ such that 
+\begin{align*}
+d(x, x_0) \leq c.
+\end{align*}
+Then, $\tilde{C}$ is closed.
+\end{lemma}
+
+\begin{proof}
+Let $f \in \bar{\tilde{C}}$.  We have
+\begin{align*}
+f \in \bar{\tilde{C}} &\iff (\forall \epsilon > 0)(B(f; \epsilon) \cap \tilde{C} \not = \emptyset)\\
+&\iff (\forall \epsilon > 0)(\exists x \in \tilde{C})(d(f, x) \leq \epsilon)\\
+&\iff (\forall n \in \mathbb{N})(\exists x_n \in \tilde{C})(d(f, x_n) \leq \frac{1}{n}).
+\end{align*}
+With this, we have
+\begin{align*}
+d(f, x_0) &\leq d(f, x_n) + d(x_n, x_0) && \text{triangle inequality}\\
+&\leq \frac{1}{n} + d(x_n, x_0)\\
+&\leq \frac{1}{n} + c && \text{since } x_n \in \tilde{C}\\
+\end{align*}
+Since this is true for all $n \in \mathbb{N}$, we have $d(f, x_0) \leq c$ which implies $f \in \tilde{C}$.
+\end{proof}
+
+\begin{lemma}
+Let $C$ be a complete metric space. Let $A \subseteq C$ be a closed. Then, $A$ is complete.
+\end{lemma}
+
+\begin{proof}
+Let $A$ be closed, and let $\{x_n\}_{n \in \mathbb{N}}$ be a Cauchy sequence in $A$.  Since $X$ is complete, we know that the limit converges to some point $x$ in $X$.  We have
+\begin{align*}
+\lim_{n \to \infty} x_n &\implies (\forall \epsilon > 0)(\exists N \in \mathbb{N})(n \geq N \implies d(x_n, x) \leq \epsilon)\\
+&\implies (\forall \epsilon > 0)(\exists x_n \in A)(x_n \in B(x; \epsilon))\\
+&\implies (\forall \epsilon > 0)(B(x; \epsilon) \cap A \not = \emptyset)\\
+&\implies x \in \bar{A}\\
+&\implies x \in A. && \text{since } A \text{ is closed}
+\end{align*}
+Since this is true for any Cauchy sequence in $A$, $A$ is complete.
+\end{proof}
+
+\section{Main Topic}
+\begin{theorem}
+Let $f$ be continuous on a rectangle 
+\begin{align}
+R = \{(t, x) \mathbb \in {R}^2 : |t - t_0| \leq a \land |x - x_0| \leq b \},
+\end{align}
+and thus bounded on $R$, say
+\begin{align}
+|f(t, x)| \leq c, \text{ for all } (t, x) \in R.
+\end{align}
+Suppose $f$ satisfies a Lipschitz condition on $R$ with respect to it's second argument, that is, there is a constant $k$ (Lipschitz constant) such that for $(t, x), (t, v) \in R$
+\begin{align}
+|f(t, x) - f(t, v)| \leq k |x - v|.
+\end{align}
+Then the initial value problem (1) has a unique solution. This solution exists on an interval $[t_0 - \beta, t_0 + \beta]$ where 
+\begin{align}
+\beta < \min \Bigg \{a, \frac{b}{c}, \frac{1}{k} \Bigg \}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Let $C(J)$ be the metric space of all real-valued continuous functions on the interval $J = [t_0 - \beta, t_0 + \beta]$ with metric $d$ defined by 
+\begin{align*}
+d(x, y) = \max_{t \in J} |x(t) - y(t)|.
+\end{align*}
+By Lemma 2 we know that $C(J)$ is a metric space, and by Lemma 3 we know that $C(J)$ is complete.  Let $\tilde{C}$ be a subspace of $C(J)$ consisting of all functions $x \in C(J)$ such that 
+\begin{align}
+|x(t) - x_0| \leq c \beta.
+\end{align}
+By Lemma 4,  we have that $\tilde{C}$ is closed, so by Lemma 5 $\tilde{C}$ is complete.
+
+From the fundamental theorem of calculus, (1) can be written in the form $x = Tx$, where $T: \tilde{C} \to \tilde{C}$ is defined by 
+\begin{align}
+Tx(t) = x_0 + \int_{t_0}^{t} f(\tau, x(\tau))d \tau
+\end{align}
+We have $\tau \in J \implies |\tau - t_0| \leq a$ (by 4), and 
+\begin{align*}
+x \in \tilde{C} &\implies |x(\tau) - x_0| \leq c \beta &&\text{by (5)}\\
+&\implies |x(\tau) - x_0| \leq b &&\text{by (4)}.
+\end{align*}
+Thus, $(\tau, x(\tau)) \in R$ and the integral in (6) exists since $f$ is continuous on $R$. To see that $T$ is a contraction mapping on $\tilde{C}$,
+\begin{align*}
+|Tx(t) - x_0| = \left|\int_{t_0}^{t} f(\tau, x(\tau))d \tau \Large\right|
+\end{align*}
+\end{proof}
+\end{document}
