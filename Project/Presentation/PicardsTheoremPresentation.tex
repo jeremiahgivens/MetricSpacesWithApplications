@@ -73,15 +73,12 @@
 \vspace*{\fill}
 \begin{center}
 {\Huge Picard's Existence and Uniqueness Theorem}\\
-Author: Jeremiah Givens\\
+Presenter: Jeremiah Givens\\
 Professor: Dr. Claudio Morales\\
 Deparment of Mathematics, University of Alabama in Huntsville
 \end{center}
 \vspace*{\fill}
 \end{titlepage}
-
-\section{Introduction}
-The main objective of this paper is to examine a very practical application of Banach's fixed point theorem: Picard's Existence and Uniqueness Theorem for Ordinary Differential Equations. We will begin by proving some useful lemmas, which we will then use to prove Picard's theorem. After proving the theorem, we will then look at a few example differential equations that Picards theorem proves the existence of solutions to, and we will use an iterative technique, known as the Picard Iteration, to approximate the solutions.
 
 \section{Preliminaries}
 \begin{lemma}
@@ -293,81 +290,5 @@ x(t) = x_0 + \int_{t_0}^{t} f(\tau, x(\tau))d \tau.
 \end{align}
 Since $(\tau, x(\tau)) \in R$ where $f$ is continuous, we have that both sides of (7) are differentiable,  and $x$ satisfies (1).  Since every solution $x$ to $(1)$ must satisfy $(7)$,  we have that $x$ is unique, and our proof is complete.
 \end{proof}
-
-\section*{Examples}
-As we saw in the proof of the Banach Fixed Point Theorem, fixed points of a contraction mapping can be written as the limit of the sequence $\{T^n x_0 \}_{n = 0}^\infty$. This provides us with an iterative technique for approximating the solution to differential equations that are shown to have a unique solution by Picard's Theorem. In this section we will go over some examples that illustrate this technique.
-
-\subsection*{Example 1}
-We start first, with the well known equation
-\begin{align*}
-x' = x \text{,  and } x(0) = 1.
-\end{align*}
-
-In this case, $f(t, x) = x$, which is clearly continuous on $\mathbb{R}^2$.  Also, $f$ satisfies our Lipshitz Condition, as
-\begin{align*}
-|f(t, x) - f(t, v)| = |x - v|,
-\end{align*}
-and we can see that our Lipshitz constant is any $k \geq 1$. With all of this, we can see that Picard's theorem gives us a solution for $t$ in any closed interval centered at $0$.
-
-Lets go ahead and compute the first few terms:
-\begin{align*}
-x_0 &= 1\\
-Tx_0 &= x_0 + \int_{t_0}^{t} x_0 d \tau = 1 +  \int_{0}^{t} 1 d \tau = 1 + t\\
-T^{2} x_0 &= 1 +  \int_{0}^{t} (1 + t) d \tau = 1 + t + \frac{1}{2}t^2 .
-\end{align*}
-Continuing in this manner, it becomes quite obvious that Picard's iteration is computing the Taylor series of the exponential function
-\begin{align*}
-x(t) = \sum_{n = 0}^\infty \frac{t^n}{n !} = e^t,
-\end{align*}
-which we know to be the solution of this differential equation.
-
-\subsection*{Example 2}
-We will now consider a more interesting equation
-\begin{align*}
-x' = t \cos(x) \text{, and } x(0) = 0.
-\end{align*}
-Once again, we have that $f$ is continuous $\mathbb{R}^2$. We then need to show that $f$ fits the Lipschitz condition. We have
-\begin{align*}
-|f(t, x) - f(t, v)| &= |t \cos(x) - t \cos(v)|\\
-&\leq |t| |\cos(x) - \cos(v)| \\
-&= |t| |\cos(x) - \cos(v)|.
-\end{align*}
-Now we know the derivative
-\begin{align*}
-\frac{d}{d t} (\cos(\theta)) = -sin(\theta).
-\end{align*}
-Assuming, without loss of generality, that $x \leq y$, the mean value theorem from elementary calculus tells us that $\exists c \in (x, y)$ such that
-\begin{align*}
--\sin(c) = \frac{\cos(v) - \cos(x)}{v - x} &\implies \sin(c) (x - v) = \cos(v) - \cos(x)\\
-&\implies |\cos(x) - \cos(v)| = |\sin(c)| |x - v|\\
-&\implies |\cos(x) - \cos(v)| \leq |x - v| && \text{Since } \sin(c) \in [-1, 1].
-\end{align*}
-Therefore, 
-\begin{align*}
-|f(t, x) - f(t, v)| &\leq |t| |\cos(x) - \cos(v)| \\
-&\leq |t| |x - v|\\
-&\leq k |x - v| && \text{if we restrict } t \in [-k, k] \text{ for some } k \in (0, \infty),
-\end{align*}
-and we have determined $f$ is fits the Lipschitz condition, and Picard's theorem tells us there exists a unique solution to this differential equation. 
-
-Jumping right in, let's calculate the first few terms of the Picard Iteration.
-\begin{align*}
-x_0 &= 0\\
-Tx_0 &= x_0 + \int_{0}^t \tau \cos(x_0) d \tau = \int_{0}^t \tau d \tau = \frac{1}{2} t^2\\
-T^2 x_0 &= \int_{0}^t \tau \cos \left( \frac{1}{2} \tau^2 \right) d \tau = \sin \left( \frac{1}{2} t^2 \right)  \\
-T^3 x_0 &= \int_{0}^t \tau \cos \left(\sin \left( \frac{1}{2} t^2 \right)  \right) d \tau = \frac{1}{2} t^2 \cos \left( \sin \left(\frac{t^2}{2} \right) \right) \\
-T^4 x_0 &= \int_{0}^t \tau \cos \left(  \frac{1}{2} \tau^2 \cos \left( \sin \left(\frac{\tau^2}{2} \right) \right)\right) d \tau.
-\end{align*}
-We did not compute a closed form of that last term, as it exceeded the time of our computer algebra software. This highlights an unpleasant feature of this technique: it can quickly become difficult to compute higher terms in the sequence.
-
-It's interesting to note that, in contrast to the last example,  the Picard iteration is not computing the Taylor series of our solution.  However, we have all the information we need to compute the Taylor series of $x$. For the purpose of comparison, let's define a new sequence, $\{x_n\}_{n = 0}^\infty$, where the $n^\text{th}$ term is the first $n + 1$ terms of the Taylor series. Then, we have
-\begin{align*}
-x_0 &= 0\\
-x_1 &= 0\\
-x_2 &= \frac{t^2}{2}\\
-x_3 &= \frac{t^2}{2} - \frac{t^6}{48}\\
-x_4 &= \frac{t^2}{2} - \frac{t^6}{48} + \frac{t^{10}}{768}\\
-x_5 &= \frac{t^2}{2} - \frac{t^6}{48} + \frac{t^{10}}{768} - \frac{61 t^{14}}{645120}.
-\end{align*}
 \end{document}
 

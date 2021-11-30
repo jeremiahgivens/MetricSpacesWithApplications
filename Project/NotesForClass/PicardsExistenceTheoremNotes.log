@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  28 NOV 2021 16:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  28 NOV 2021 16:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**PicardsExistenceAndUniquenessTheorem.tex
-(./PicardsExistenceAndUniquenessTheorem.tex
+**PicardsExistenceTheoremNotes.tex
+(./PicardsExistenceTheoremNotes.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06>
 (/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
@@ -658,8 +658,8 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count296
 \l__pdf_internal_box=\box60
 )
-(./PicardsExistenceAndUniquenessTheorem.aux)
-\openout1 = `PicardsExistenceAndUniquenessTheorem.aux'.
+(./PicardsExistenceTheoremNotes.aux)
+\openout1 = `PicardsExistenceTheoremNotes.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
@@ -739,66 +739,46 @@ ick labels; missing features). Consider writing \pgfplotsset{compat=1.17} into
 your preamble.
  on input line 71.
 
-[1
-
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 88.
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1] [2]
-[3]
+) [1{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 275.
-
-
-LaTeX Font Warning: Command \Large invalid in math mode on input line 275.
-
-
-LaTeX Font Warning: Command \Large invalid in math mode on input line 283.
-
-
-LaTeX Font Warning: Command \Large invalid in math mode on input line 283.
-
-[4] [5] [6] (./PicardsExistenceAndUniquenessTheorem.aux) ) 
+]
+(./PicardsExistenceTheoremNotes.aux) ) 
 Here is how much of TeX's memory you used:
- 24371 strings out of 480608
- 613710 string characters out of 5903631
- 972927 words of memory out of 5000000
- 39865 multiletter control sequences out of 15000+600000
- 537197 words of font info for 42 fonts, out of 8000000 for 9000
+ 24368 strings out of 480608
+ 613593 string characters out of 5903631
+ 962919 words of memory out of 5000000
+ 39863 multiletter control sequences out of 15000+600000
+ 536591 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,12n,98p,969b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2020/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2020/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
-pe1/public/amsfonts/symbols/msbm7.pfb>
-Output written on PicardsExistenceAndUniquenessTheorem.pdf (7 pages, 194881 byt
-es).
+ 68i,12n,98p,724b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2020/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr9.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb>
+Output written on PicardsExistenceTheoremNotes.pdf (1 page, 131676 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 63 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

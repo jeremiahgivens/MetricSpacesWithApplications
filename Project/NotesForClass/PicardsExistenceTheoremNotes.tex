@@ -1,0 +1,131 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,%
+            left=.75in,right=.75in,top=1in,bottom=1in]{geometry}
+\setlength{\headsep}{0.25in}
+
+\usepackage{amsthm}
+
+\usepackage{graphicx}
+\usepackage{pgfplots}
+            
+\usepackage[english]{babel}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{case}{Case}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+\DeclareMathOperator{\interior}{int}
+
+\newcommand{\Tau}{\mathcal{T}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+
+\pagestyle{fancy}
+\author{Jeremiah Givens}
+\newcommand{\subject}{Metric Spaces}
+\newcommand{\Date}{9/2/2021} 
+\makeatletter
+\rhead{{\small\@author}}
+\lhead{{\small\subject}}
+\chead{{\large Picard's Existence and Uniqueness Theorem}}
+\cfoot{}
+\rfoot{\thepage}
+\lfoot{\today}
+
+\renewcommand{\theequation}{\arabic{equation}}
+
+\begin{document}
+
+\section*{Supporting Lemmas}
+\begin{lemma}
+Let $x: [a, b] \to \mathbb{R}$ be continuous. Then, $x$ is bounded, and $x$ achieves it's maximum.
+\end{lemma}
+
+\begin{lemma}
+Let $C$ equal the set of all continuous real-valued functions on the closed interval $[a, b]$. Then, $C$ forms a metric space with the metric $d$ defined by
+\begin{align*}
+d(x, y) = \max_{t \in [a, b]} |x(t) - y(t)|.
+\end{align*}
+\end{lemma}
+
+
+\begin{lemma}
+The metric space $(C, d)$ from the previous lemma is complete.
+\end{lemma}
+
+\begin{lemma}
+Let $x_0 \in \mathbb{R}$, and let $c \in (0, \infty)$. Let $\tilde{C}$ be a subspace of the metric space from Lemma 1, consisting of all functions $x \in C$ such that 
+\begin{align*}
+d(x, x_0) \leq c.
+\end{align*}
+Then, $\tilde{C}$ is closed.
+\end{lemma}
+
+\begin{lemma}
+Let $C$ be a complete metric space. Let $A \subseteq C$ be closed. Then, $A$ is complete.
+\end{lemma}
+
+\section*{Main Topic}
+The focus of this paper is on solutions to explicit ordinary differential equations of the form
+\begin{align}
+x' = f(t, x)
+\end{align}
+where $x: \mathbb{R} \to \mathbb{R}$, $f: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$, and the prime denotes differentiation of $x$ with respect to $t$.  Specifically, we are interested in initial value problems, where
+\begin{align*}
+x(t_0) = x_0.
+\end{align*}
+
+\begin{theorem}
+Let $f$ be continuous on a rectangle 
+\begin{align*}
+R = \{(t, x) \mathbb \in {R}^2 : |t - t_0| \leq a \land |x - x_0| \leq b \},
+\end{align*}
+and thus bounded on $R$, say
+\begin{align}
+|f(t, x)| \leq c, \text{ for all } (t, x) \in R.
+\end{align}
+Suppose $f$ satisfies a Lipschitz condition on $R$ with respect to it's second argument, that is, there is a constant $k$ (Lipschitz constant) such that for $(t, x), (t, v) \in R$
+\begin{align}
+|f(t, x) - f(t, v)| \leq k |x - v|.
+\end{align}
+Then the initial value problem (1) has a unique solution. This solution exists on an interval $[t_0 - \beta, t_0 + \beta]$ where 
+\begin{align}
+\beta < \min \Bigg \{a, \frac{b}{c}, \frac{1}{k} \Bigg \}
+\end{align}
+\end{theorem}
+\end{document}
+
