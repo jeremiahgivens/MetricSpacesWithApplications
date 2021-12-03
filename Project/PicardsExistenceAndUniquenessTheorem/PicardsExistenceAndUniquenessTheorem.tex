@@ -17,6 +17,11 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{case}{Case}
 
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
 \newcommand\restr[2]{{% we make the whole thing an ordinary symbol
   \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
   #1 % the function
@@ -69,6 +74,24 @@
 \renewcommand{\theequation}{\arabic{equation}}
 
 \begin{document}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
 \begin{titlepage}
 \vspace*{\fill}
 \begin{center}
@@ -219,14 +242,11 @@ Since this is true for any Cauchy sequence in $A$, $A$ is complete.
 \end{proof}
 
 \section{Main Topic}
-The focus of this paper is on solutions to explicit ordinary differential equations of the form
+The focus of this paper is on solutions to explicit ordinary differential equation initial value problems of the form
 \begin{align}
-x' = f(t, x)
+x' = f(t, x) \text{ with initial condition } x(t_0) = x_0,
 \end{align}
-where $x: \mathbb{R} \to \mathbb{R}$, $f: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$, and the prime denotes differentiation of $x$ with respect to $t$.  Specifically, we are interested in initial value problems, where
-\begin{align*}
-x(t_0) = x_0.
-\end{align*}
+where $x: \mathbb{R} \to \mathbb{R}$, $f: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$, and the prime denotes differentiation of $x$ with respect to $t$.
 
 \begin{theorem}
 Let $f$ be continuous on a rectangle 
@@ -267,7 +287,22 @@ We have $\tau \in J \implies |\tau - t_0| \leq a$ (by 4), and
 x \in \tilde{C} &\implies |x(\tau) - x_0| \leq c \beta &&\text{by (5)}\\
 &\implies |x(\tau) - x_0| \leq b &&\text{by (4)}.
 \end{align*}
-Thus, $(\tau, x(\tau)) \in R$ and the integral in (6) exists since $f$ is continuous on $R$. To see that $T$ maps $\tilde{C}$ into itself,
+Thus, $(\tau, x(\tau)) \in R$ and the integral in (6) exists since $f$ is continuous on $R$.We must show that $Tx$ is continuous, and that $T$ maps $\tilde{C}$ into itself. To see that $Tx$ is continuous, let $\epsilon >0$. We have, for any $t_1, t_2 \in J$, with $t_1 \geq t_2$, we have
+\begin{align*}
+|Tx(t_1) - Tx(t_2)| &= \left| x_0 + \int_{t_0}^{t_1} f(\tau, x(\tau))d \tau - x_0 - \int_{t_0}^{t_2} f(\tau, x(\tau))d \tau\Large\right|\\
+&= \left|\int_{t_0}^{t_1} f(\tau, x(\tau))d \tau  - \int_{t_0}^{t_2} f(\tau, x(\tau))d \tau\Large\right|\\
+&= \left|\int_{t_2}^{t_1} f(\tau, x(\tau))d \tau\Large\right|\\
+&= \int_{t_2}^{t_1} \left|f(\tau, x(\tau))\Large\right|d \tau\\
+&\leq \int_{t_2}^{t_1} c d \tau\\
+&\leq |t_2 - t_1| c.
+\end{align*}
+Thus, restricting our $t_1$ and $t_2$ such that $|t_1 - t_2| < \frac{\epsilon}{c}$, we have
+\begin{align*}
+|Tx(t_1) - Tx(t_2)| &< \epsilon.
+\end{align*}
+With this, we have shown that $Tx$ is uniformly continuous, and therefore continuous, which means that $Tx$ is in $C(J)$.
+
+To see that $T$ maps $\tilde{C}$ into itself,
 \begin{align*}
 |Tx(t) - x_0| &= \left|\int_{t_0}^{t} f(\tau, x(\tau))d \tau \Large\right|\\
 &\leq c|t - t_0| && \text{by (2)}\\
@@ -360,14 +395,28 @@ T^4 x_0 &= \int_{0}^t \tau \cos \left(  \frac{1}{2} \tau^2 \cos \left( \sin \lef
 \end{align*}
 We did not compute a closed form of that last term, as it exceeded the time of our computer algebra software. This highlights an unpleasant feature of this technique: it can quickly become difficult to compute higher terms in the sequence.
 
-It's interesting to note that, in contrast to the last example,  the Picard iteration is not computing the Taylor series of our solution.  However, we have all the information we need to compute the Taylor series of $x$. For the purpose of comparison, let's define a new sequence, $\{x_n\}_{n = 0}^\infty$, where the $n^\text{th}$ term is the first $n + 1$ terms of the Taylor series. Then, we have
+It's interesting to note that, in contrast to the last example, the Picard iteration is not computing the Taylor series of our solution.  However, we have all the information we need to compute the Taylor series of $x$. For the purpose of comparison, let's compare the first four non-zero terms of the Taylor series to the exact solution. This expression is
 \begin{align*}
-x_0 &= 0\\
-x_1 &= 0\\
-x_2 &= \frac{t^2}{2}\\
-x_3 &= \frac{t^2}{2} - \frac{t^6}{48}\\
-x_4 &= \frac{t^2}{2} - \frac{t^6}{48} + \frac{t^{10}}{768}\\
-x_5 &= \frac{t^2}{2} - \frac{t^6}{48} + \frac{t^{10}}{768} - \frac{61 t^{14}}{645120}.
+\text{First four non-zero terms of Taylor expansion} &= \frac{t^2}{2} - \frac{t^6}{48} + \frac{t^{10}}{768} - \frac{61 t^{14}}{645120}.
 \end{align*}
+As we can see, this very different in form than the results from Picard iteration. Plotting this against the exact solution, we see that many more terms are needed to give an accurate approximation:
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.75]{TaylorSeries}
+\end{figure}
+
+
+Due to the difficulties of analytic integration, applying Picard iteration directly, as we did above, is often not feasible. However, by utilizing numerical integration techniques, Picard iteration provides us with a way to numerically approximate solutions to our IVP. Below is a MATLAB script that I wrote to perform Picard iteration utilizing numerical integration (trapazodial rule): 
+\pagebreak
+\section*{PicardIteration.m}
+\lstinputlisting{PicardIteration.m}
+
+In contrast to using Picard iteration with analytic integration, this method is extremely fast. For 35 iterations, this script takes only a few hundred milliseconds to run. Below we have plotted every fifth iteration against the exact solution to the above IVP:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics{PicardFig}
+\end{figure}
+
 \end{document}
 
