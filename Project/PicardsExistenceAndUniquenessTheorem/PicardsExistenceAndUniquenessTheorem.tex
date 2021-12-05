@@ -169,7 +169,7 @@ The metric space $(C, d)$ from the previous lemma is complete.
 \end{lemma}
 
 \begin{proof}
-Let $\{x_n\}_{n \in \mathbb{N}}$ be a Cauchy sequence in $C$.  Define $f:[a, b] \to \mathbb{R}$ by $f(t) = \lim_{n \to \infty} x_n(t)$. We need to show that $f$ is well defined, that $f$ is continuous, and that $f = \lim_{n \to \infty} x_n$.
+Let $\{x_n\}_{n \in \mathbb{N}}$ be a Cauchy sequence in $C$.  Define $f:[a, b] \to \mathbb{R}$ by $f(t) = \lim_{n \to \infty} x_n(t)$. We need to show that $f$ is well defined,  that $f = \lim_{n \to \infty} x_n$, and that that $f$ is continuous.
 
 To show that $f$ is well defined, it will suffice to show that for all $t \in [a, b]$, the sequence $\{x_n(t) \}_{n=1}^\infty$ is Cauchy, since $\mathbb{R}$ is complete. Let $\epsilon > 0$. Since $\{x_n\}_{n \in \mathbb{N}}$ is Cauchy, there exists an $N \in \mathbb{N}$ such that for all $n, m \geq N$,
 \begin{align*}
@@ -178,27 +178,27 @@ To show that $f$ is well defined, it will suffice to show that for all $t \in [a
 \end{align*}
 From this, we can conclude that $f$ is well defined.
 
-We will now show that $f$ is continuous. Let $\epsilon >0$, and let $p_0 \in [a, b]$. Since $\{x_n(p)\}_{n \in \mathbb{N}}$ converges to $f(p)$ for all $p \in [a, b]$, there exists an $n \in \mathbb{N}$ such that $|f(p) - x_{n}(p)| < \frac{\epsilon}{3}$. Since $x_n$ is continuous at $p_0$, there exists a $\delta > 0$ such that for all $p \in [a, b]$
-\begin{align*}
-|p - p_0| < \delta \implies |x_n(p) - x_n(p_0)| < \frac{\epsilon}{3}.
-\end{align*} 
-With this, we have that for all $p \in [a, b]$ with $|p - p_0| < \delta$
-\begin{align*}
-|f(p) - f(p_0)| &\leq |f(p) - x_{n}(p)| + |f(p_0) - x_{n}(p)| &&\text{triangle inequality}\\
-&\leq |f(p) - x_{n}(p)| + |f(p_0) - x_{n}(p_0)| + |x_n(p_0) - x_{n}(p)| &&\text{triangle inequality} \\
-&< \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}\\
-&= \epsilon.
-\end{align*}
-Thus, we have that $f$ is continuous, and therefore $f \in C$.
-
-Finally, all that remains is to show that $f = \lim_{n \to \infty} x_n$. Let $\epsilon >0$. Since $\{x_n(p)\}_{n \in \mathbb{N}}$ is Cauchy, there exists an $N \in \mathbb{N}$ such that for all $m, n \geq N$, we have $||x_n - x_m|| < \epsilon$. Then, for all $t \in [a, b]$ and $m \geq N$, we have
+We will now show that $f = \lim_{n \to \infty} x_n$. Let $\epsilon >0$. Since $\{x_n\}_{n \in \mathbb{N}}$ is Cauchy, there exists an $N \in \mathbb{N}$ such that for all $m, n \geq N$, we have $||x_n - x_m|| < \epsilon$. Then, for all $t \in [a, b]$ and $m \geq N$, we have
 \begin{align*}
 |f(t) - x_m(t)| &= |\lim_{n \to \infty} x_n(t) - x_m(t)| && \text{by definition of } f\\
 &= \lim_{n \to \infty}|x_n(t) - x_m(t)| && \text{by elemetary limit laws}\\
 &\leq \lim_{n \to \infty}||x_n - x_m|| && \text{by definition of our norm}\\
 &\leq \epsilon. && \text{by definition of } N \text{ above}
 \end{align*}
-Thus, since $\epsilon$ was arbitrary, we have shown that $f = \lim_{n \to \infty} x_n$, and that $C$ is complete.
+Since this is true for all $t \in [a, b]$, we have
+\begin{align*}
+||f - x_m|| \leq \epsilon \text{ for all } m \geq N.
+\end{align*} 
+Thus, since $\epsilon$ was arbitrary, we have shown that $f = \lim_{n \to \infty} x_n$.
+
+Now we must show that $f$ is continuous. Let $\epsilon >0$, and let $t_0 \in [a, b]$.  Since $f = \lim_{n \to \infty} x_n$, there exists an $N \in \mathbb{N}$ such that $||f - x_N|| < \frac{\epsilon}{3}$. Then, by definition of our norm, we have that $||f(t) - x_N(t)|| < \frac{\epsilon}{3}$ for all $t \in [a, b]$.  Since $x_N$ is continuous, there exists a $\delta >0$ such that for all $t \in B(t_0; \delta)$, we have $|x_N(t_0) - x_N(t)| < \frac{\epsilon}{3}$. With this, we have that for all $t \in B(t_0; \delta)$
+\begin{align*}
+|f(t) - f(t_0)| &\leq |f(t) - x_N(t)| + |x_N(t) - f(t_0)| && \text{triangle inequality}\\
+&\leq |f(t) - x_N(t)| + |x_N(t) - x_N(t_0)| + |f(t_0) - x_N(t_0)| && \text{triangle inequality}\\
+&< \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}\\
+&= \epsilon.
+\end{align*}
+Thus, we have shown that $f$ is continuous, which implies that $f \in C$,  and we can finally conclude that $C$ is complete.
 \end{proof}
 
 \begin{lemma}
@@ -402,21 +402,19 @@ It's interesting to note that, in contrast to the last example, the Picard itera
 As we can see, this very different in form than the results from Picard iteration. Plotting this against the exact solution, we see that many more terms are needed to give an accurate approximation:
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.75]{TaylorSeries}
+    \includegraphics[scale=1]{TaylorSeries}
 \end{figure}
 
-
-Due to the difficulties of analytic integration, applying Picard iteration directly, as we did above, is often not feasible. However, by utilizing numerical integration techniques, Picard iteration provides us with a way to numerically approximate solutions to our IVP. Below is a MATLAB script that I wrote to perform Picard iteration utilizing numerical integration (trapazodial rule): 
 \pagebreak
+Due to the difficulties of analytic integration, applying Picard iteration directly, as we did above, is often not feasible. However, by utilizing numerical integration techniques, Picard iteration provides us with a way to numerically approximate solutions to our IVP. Below is a MATLAB script that I wrote to perform Picard iteration utilizing numerical integration (trapazodial rule): 
+
 \section*{PicardIteration.m}
 \lstinputlisting{PicardIteration.m}
 
 In contrast to using Picard iteration with analytic integration, this method is extremely fast. For 35 iterations, this script takes only a few hundred milliseconds to run. Below we have plotted every fifth iteration against the exact solution to the above IVP:
-
 \begin{figure}[ht]
     \centering
-    \includegraphics{PicardFig}
+    \includegraphics[scale=0.81]{PicardFig}
 \end{figure}
-
 \end{document}
 

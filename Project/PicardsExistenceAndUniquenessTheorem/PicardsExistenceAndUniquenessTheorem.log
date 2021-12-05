@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  28 NOV 2021 16:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  4 DEC 2021 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -531,22 +531,47 @@ Package amsthm Warning: Unknown theoremstyle `theorem' on input line 14.
 \c@lemma=\count275
 \c@corollary=\count276
 \c@case=\count277
-\c@definition=\count278
-\c@remark=\count279
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count278
+\lst@gtempboxa=\box57
+\lst@token=\toks41
+\lst@length=\count279
+\lst@currlwidth=\dimen266
+\lst@column=\count280
+\lst@pos=\count281
+\lst@lostspace=\dimen267
+\lst@width=\dimen268
+\lst@newlines=\count282
+\lst@lineno=\count283
+\lst@maxwidth=\dimen269
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count284
+\lst@skipnumbers=\count285
+\lst@framebox=\box58
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+\c@definition=\count286
+\c@remark=\count287
+
 (/usr/local/texlive/2020/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2020/03/24 v1.24 mathematical typesetting tools
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count280
-\calc@Bcount=\count281
-\calc@Adimen=\dimen266
-\calc@Bdimen=\dimen267
+\calc@Acount=\count288
+\calc@Bcount=\count289
+\calc@Adimen=\dimen270
+\calc@Bdimen=\dimen271
 \calc@Askip=\skip52
 \calc@Bskip=\skip53
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count282
+\calc@Ccount=\count290
 \calc@Cskip=\skip54
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/mathtools/mhsetup.sty
@@ -562,51 +587,51 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks41
-\ex@=\dimen268
+\@emptytoks=\toks42
+\ex@=\dimen272
 ))
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen269
+\pmbraise@=\dimen273
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count283
+\inf@bad=\count291
 LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count284
-\leftroot@=\count285
+\uproot@=\count292
+\leftroot@=\count293
 LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count286
-\DOTSCASE@=\count287
+\classnum@=\count294
+\DOTSCASE@=\count295
 LaTeX Info: Redefining \ldots on input line 486.
 LaTeX Info: Redefining \dots on input line 489.
 LaTeX Info: Redefining \cdots on input line 610.
-\Mathstrutbox@=\box57
-\strutbox@=\box58
-\big@size=\dimen270
+\Mathstrutbox@=\box59
+\strutbox@=\box60
+\big@size=\dimen274
 LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count288
-\c@MaxMatrixCols=\count289
+\macc@depth=\count296
+\c@MaxMatrixCols=\count297
 \dotsspace@=\muskip16
-\c@parentequation=\count290
-\dspbrk@lvl=\count291
-\tag@help=\toks42
-\row@=\count292
-\column@=\count293
-\maxfields@=\count294
-\andhelp@=\toks43
-\eqnshift@=\dimen271
-\alignsep@=\dimen272
-\tagshift@=\dimen273
-\tagwidth@=\dimen274
-\totwidth@=\dimen275
-\lineht@=\dimen276
-\@envbody=\toks44
+\c@parentequation=\count298
+\dspbrk@lvl=\count299
+\tag@help=\toks43
+\row@=\count300
+\column@=\count301
+\maxfields@=\count302
+\andhelp@=\toks44
+\eqnshift@=\dimen275
+\alignsep@=\dimen276
+\tagshift@=\dimen277
+\tagwidth@=\dimen278
+\totwidth@=\dimen279
+\lineht@=\dimen280
+\@envbody=\toks45
 \multlinegap=\skip56
 \multlinetaggap=\skip57
-\mathdisplay@stack=\toks45
+\mathdisplay@stack=\toks46
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
 )
@@ -614,17 +639,17 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
-\g_MT_multlinerow_int=\count295
-\l_MT_multwidth_dim=\dimen277
+\g_MT_multlinerow_int=\count303
+\l_MT_multwidth_dim=\dimen281
 \origjot=\skip58
-\l_MT_shortvdotswithinadjustabove_dim=\dimen278
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen279
-\l_MT_above_intertext_sep=\dimen280
-\l_MT_below_intertext_sep=\dimen281
-\l_MT_above_shortintertext_sep=\dimen282
-\l_MT_below_shortintertext_sep=\dimen283
-\xmathstrut@box=\box59
-\xmathstrut@dim=\dimen284
+\l_MT_shortvdotswithinadjustabove_dim=\dimen282
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen283
+\l_MT_above_intertext_sep=\dimen284
+\l_MT_below_intertext_sep=\dimen285
+\l_MT_above_shortintertext_sep=\dimen286
+\l_MT_below_shortintertext_sep=\dimen287
+\xmathstrut@box=\box61
+\xmathstrut@dim=\dimen288
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
@@ -655,26 +680,26 @@ Package: calligra 2012/04/10 v1.9 LaTeX package calligra
 )
 (/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count296
-\l__pdf_internal_box=\box60
+\l__kernel_color_stack_int=\count304
+\l__pdf_internal_box=\box62
 )
 (./PicardsExistenceAndUniquenessTheorem.aux)
 \openout1 = `PicardsExistenceAndUniquenessTheorem.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -712,17 +737,17 @@ LaTeX Font Info:    ... okay on input line 71.
 
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count297
-\scratchdimen=\dimen285
-\scratchbox=\box61
-\nofMPsegments=\count298
-\nofMParguments=\count299
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count300
-\MPscratchDim=\dimen286
-\MPnumerator=\count301
-\makeMPintoPDFobject=\count302
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count305
+\scratchdimen=\dimen289
+\scratchbox=\box63
+\nofMPsegments=\count306
+\nofMParguments=\count307
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count308
+\MPscratchDim=\dimen290
+\MPnumerator=\count309
+\makeMPintoPDFobject=\count310
+\everyMPtoPDFconversion=\toks48
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -737,68 +762,133 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.17} into 
 your preamble.
- on input line 71.
+ on input line 76.
 
-[1
+\c@lstlisting=\count311
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 88.
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 111
+.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 111
+.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1] [2]
 [3]
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 275.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
 
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 275.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
 
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 283.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
 
 
-LaTeX Font Warning: Command \Large invalid in math mode on input line 283.
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
 
-[4] [5] [6] (./PicardsExistenceAndUniquenessTheorem.aux) ) 
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 298.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 310.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 310.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 318.
+
+
+LaTeX Font Warning: Command \Large invalid in math mode on input line 318.
+
+[4] [5]
+Package epstopdf Info: Source file: <TaylorSeries.eps>
+(epstopdf)                    date: 2021-12-03 16:25:58
+(epstopdf)                    size: 70235 bytes
+(epstopdf)             Output file: <TaylorSeries-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-12-03 16:26:54
+(epstopdf)                    size: 25263 bytes
+(epstopdf)             Command: <repstopdf --outfile=TaylorSeries-eps-converted
+-to.pdf TaylorSeries.eps>
+(epstopdf)             \includegraphics on input line 405.
+Package epstopdf Info: Output file is already uptodate.
+<TaylorSeries-eps-converted-to.pdf, id=41, 357.335pt x 302.12875pt>
+File: TaylorSeries-eps-converted-to.pdf Graphic file (type pdf)
+<use TaylorSeries-eps-converted-to.pdf>
+Package pdftex.def Info: TaylorSeries-eps-converted-to.pdf  used on input line 
+405.
+(pdftex.def)             Requested size: 357.33412pt x 302.128pt.
+ [6] (./PicardIteration.m [7 <./TaylorSeries-eps-converted-to.pdf>])
+Package epstopdf Info: Source file: <PicardFig.eps>
+(epstopdf)                    date: 2021-12-03 16:25:58
+(epstopdf)                    size: 590884 bytes
+(epstopdf)             Output file: <PicardFig-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-12-03 16:26:55
+(epstopdf)                    size: 167759 bytes
+(epstopdf)             Command: <repstopdf --outfile=PicardFig-eps-converted-to
+.pdf PicardFig.eps>
+(epstopdf)             \includegraphics on input line 417.
+Package epstopdf Info: Output file is already uptodate.
+<PicardFig-eps-converted-to.pdf, id=58, 421.575pt x 543.02875pt>
+File: PicardFig-eps-converted-to.pdf Graphic file (type pdf)
+<use PicardFig-eps-converted-to.pdf>
+Package pdftex.def Info: PicardFig-eps-converted-to.pdf  used on input line 417
+.
+(pdftex.def)             Requested size: 341.47388pt x 439.85086pt.
+
+[8 <./PicardFig-eps-converted-to.pdf>]
+(./PicardsExistenceAndUniquenessTheorem.aux) ) 
 Here is how much of TeX's memory you used:
- 24371 strings out of 480608
- 613710 string characters out of 5903631
- 972927 words of memory out of 5000000
- 39865 multiletter control sequences out of 15000+600000
- 537197 words of font info for 42 fonts, out of 8000000 for 9000
+ 26666 strings out of 480608
+ 643002 string characters out of 5903631
+ 1233255 words of memory out of 5000000
+ 42126 multiletter control sequences out of 15000+600000
+ 537532 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,12n,98p,969b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2020/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2020/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
-pe1/public/amsfonts/symbols/msbm7.pfb>
-Output written on PicardsExistenceAndUniquenessTheorem.pdf (7 pages, 194881 byt
+ 68i,12n,98p,969b,2239s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-di
+st/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2020/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr9.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/am
+sfonts/symbols/msbm7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public
+/cm-super/sfrm1000.pfb>
+Output written on PicardsExistenceAndUniquenessTheorem.pdf (9 pages, 397671 byt
 es).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 128 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
